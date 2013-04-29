@@ -50,7 +50,10 @@ public class Inicio extends javax.swing.JFrame {
         txtApellido = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("SIUV - Sistema de Apoyo a Decisiones Empresariales");
+        setLocationByPlatform(true);
+        setResizable(false);
 
         jButton1.setText("Prueba Conseguir Data");
         jButton1.addActionListener(new java.awt.event.ActionListener() {

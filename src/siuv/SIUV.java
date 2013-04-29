@@ -15,7 +15,9 @@ public class SIUV {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Inicio inicio = new Inicio();
+        Menu_principal inicio = new Menu_principal();
+        inicio.setResizable(false);
+        inicio.pack();
         inicio.setVisible(true);
     }
 }
