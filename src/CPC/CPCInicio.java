@@ -6,7 +6,7 @@ package CPC;
 
 /**
  *
- * @author Sayli
+ * @author lscauv
  */
 public class CPCInicio extends javax.swing.JFrame {
 
@@ -15,6 +15,7 @@ public class CPCInicio extends javax.swing.JFrame {
      */
     public CPCInicio() {
         initComponents();
+        this.setExtendedState(MAXIMIZED_BOTH);
     }
 
     /**
