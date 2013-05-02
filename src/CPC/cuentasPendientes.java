@@ -5,9 +5,8 @@
 package CPC;
 
 import java.sql.*;
-import java.util.*;
-import javax.swing.table.DefaultTableModel;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
+import java.awt.Dimension;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
@@ -38,7 +37,7 @@ public class cuentasPendientes extends javax.swing.JInternalFrame {
         try
         {
             conexion = data.getConnection();
-            psExecute = conexion.prepareStatement("SELECT Nombre, Apellido FROM empleado WHERE ID_Empleado=1");
+            psExecute = conexion.prepareStatement("SELECT cxc.ID_CC as 'ID', cli.ID_RFC as 'RFC', v.ID_NFacturas as 'Factura', c.Cantidad, d.Folio, d.Fecha_documento as 'Fecha' FROM cuentas_por_cobrar cxc, ventas v, credito c, doc_cobrar d, clientes cli WHERE cxc.ID_NFacturas = v.ID_NFacturas AND cli.ID_RFC = cxc.ID_RFC;");
             rs = psExecute.executeQuery();
             siuv.ListTableModel tmodel = siuv.ListTableModel.createModelFromResultSet(rs);
             jTable1.setModel(tmodel);
@@ -60,7 +59,6 @@ public class cuentasPendientes extends javax.swing.JInternalFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
         btnCerrar = new javax.swing.JButton();
 
         setClosable(true);
@@ -76,9 +74,12 @@ public class cuentasPendientes extends javax.swing.JInternalFrame {
             }
         ));
         jTable1.getTableHeader().setReorderingAllowed(false);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
-
-        jLabel1.setText("Cuentas pendientes");
 
         btnCerrar.setText("Cerrar");
         btnCerrar.addActionListener(new java.awt.event.ActionListener() {
@@ -95,9 +96,6 @@ public class cuentasPendientes extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 634, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnCerrar)))
@@ -107,9 +105,7 @@ public class cuentasPendientes extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCerrar)
                 .addContainerGap())
@@ -125,9 +121,28 @@ public class cuentasPendientes extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_btnCerrarActionPerformed
 
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        if (evt.getClickCount() == 2)
+        {
+            JTable tabla = (JTable)evt.getSource();
+            int row = tabla.getSelectedRow();
+            //int col = tabla.getSelectedColumn();
+            String factura = tabla.getValueAt(row, 2).toString();
+            cobroUnico cobro = new cobroUnico(factura);
+            cobro.setVisible(true);
+            
+            Dimension dim = CPCInicio.desktopPane.getSize();
+            Dimension winDim = cobro.getSize();
+            cobro.setLocation((dim.width - winDim.width) / 2, (dim.height - winDim.height) / 2);
+            CPCInicio.desktopPane.add(cobro, new Integer(10));
+            
+            //JOptionPane.showConfirmDialog(this, "RFC: " + RFC, "RFC Seleccionado", 2);
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

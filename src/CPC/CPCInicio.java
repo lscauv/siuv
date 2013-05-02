@@ -4,6 +4,8 @@
  */
 package CPC;
 
+import java.awt.Dimension;
+
 /**
  *
  * @author lscauv
@@ -34,6 +36,8 @@ public class CPCInicio extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         cobrosMenu = new javax.swing.JMenuItem();
         cobrosBatchMenu = new javax.swing.JMenuItem();
+        jSeparator4 = new javax.swing.JPopupMenu.Separator();
+        salirMenu = new javax.swing.JMenuItem();
         menuReportes = new javax.swing.JMenu();
         pagosRealizadosMenu = new javax.swing.JMenuItem();
         pagosPendientesMenu = new javax.swing.JMenuItem();
@@ -60,10 +64,24 @@ public class CPCInicio extends javax.swing.JFrame {
         menuCuentas.add(jSeparator1);
 
         cobrosMenu.setText("Cobros");
+        cobrosMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cobrosMenuActionPerformed(evt);
+            }
+        });
         menuCuentas.add(cobrosMenu);
 
         cobrosBatchMenu.setText("Cobros en lotes");
         menuCuentas.add(cobrosBatchMenu);
+        menuCuentas.add(jSeparator4);
+
+        salirMenu.setText("Salir");
+        salirMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salirMenuActionPerformed(evt);
+            }
+        });
+        menuCuentas.add(salirMenu);
 
         menuBar.add(menuCuentas);
 
@@ -112,8 +130,26 @@ public class CPCInicio extends javax.swing.JFrame {
         // TODO add your handling code here:
         cuentasPendientes cuentas = new cuentasPendientes();
         cuentas.setVisible(true);
+        Dimension dim = desktopPane.getSize();
+        Dimension winDim = cuentas.getSize();
+        cuentas.setLocation((dim.width - winDim.width) / 2, (dim.height - winDim.height) / 2);
         desktopPane.add(cuentas, javax.swing.JLayeredPane.DEFAULT_LAYER);
     }//GEN-LAST:event_cuentasPendientesMenuActionPerformed
+
+    private void cobrosMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cobrosMenuActionPerformed
+        // TODO add your handling code here:
+        cobroUnico cobro = new cobroUnico();
+        cobro.setVisible(true);
+        Dimension dim = desktopPane.getSize();
+        Dimension winDim = cobro.getSize();
+        cobro.setLocation((dim.width - winDim.width) / 2, (dim.height - winDim.height) / 2);
+        desktopPane.add(cobro, javax.swing.JLayeredPane.DEFAULT_LAYER);
+    }//GEN-LAST:event_cobrosMenuActionPerformed
+
+    private void salirMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirMenuActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_salirMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -154,11 +190,12 @@ public class CPCInicio extends javax.swing.JFrame {
     private javax.swing.JMenuItem cobrosBatchMenu;
     private javax.swing.JMenuItem cobrosMenu;
     private javax.swing.JMenuItem cuentasPendientesMenu;
-    private javax.swing.JDesktopPane desktopPane;
+    public static javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenuItem expedientesMenu;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
+    private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu menuCuentas;
     private javax.swing.JMenu menuHerramientas;
@@ -167,5 +204,6 @@ public class CPCInicio extends javax.swing.JFrame {
     private javax.swing.JMenuItem pagosPendientesMenu;
     private javax.swing.JMenuItem pagosRealizadosMenu;
     private javax.swing.JMenuItem reportePagosPeriodoMenu;
+    private javax.swing.JMenuItem salirMenu;
     // End of variables declaration//GEN-END:variables
 }
