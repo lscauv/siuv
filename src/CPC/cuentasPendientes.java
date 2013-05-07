@@ -41,7 +41,6 @@ public class cuentasPendientes extends javax.swing.JInternalFrame {
             rs = psExecute.executeQuery();
             siuv.ListTableModel tmodel = siuv.ListTableModel.createModelFromResultSet(rs);
             jTable1.setModel(tmodel);
-            
         } catch (SQLException ex)
         {
             JOptionPane.showMessageDialog(this, ex.getMessage());

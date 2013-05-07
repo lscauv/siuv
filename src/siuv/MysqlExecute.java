@@ -18,7 +18,6 @@ import java.sql.SQLException;
 public class MysqlExecute {
     
     Connection conn;
-    ResultSet rs;
     PreparedStatement psExecute;
     Statement stmt;
     MysqlDataSource ds = new MysqlDataSource();
@@ -27,10 +26,7 @@ public class MysqlExecute {
      * Inicializa la clase MysqlExecute
      */
     public MysqlExecute(){
-        ds.setUser("root");
-        ds.setPassword("1234");
-        ds.setDatabaseName("siuv");
-        ds.setServerName("127.0.0.1");
+        
     }
     
     /**
@@ -40,11 +36,15 @@ public class MysqlExecute {
      * @return filas insertadas
      */
     public int Insertar(String tabla, String datos){
+        ds.setUser("root");
+        ds.setPassword("1234");
+        ds.setDatabaseName("siuv");
+        ds.setServerName("127.0.0.1");
         int id = 0;
         try {
             conn = ds.getConnection();
             stmt = conn.createStatement();
-            String insertStr = "INSERT INTO " + tabla + " VALUES(" + datos + ")";
+            String insertStr = "INSERT INTO `" + tabla + "` VALUES(" + datos + ")";
             id = stmt.executeUpdate(insertStr);
         } catch(SQLException ex){
             ex.toString();
@@ -60,11 +60,15 @@ public class MysqlExecute {
      * @return filas actualizadas
      */
     public int Actualizar(String tabla, String datos, String comparacion){
+        ds.setUser("root");
+        ds.setPassword("1234");
+        ds.setDatabaseName("siuv");
+        ds.setServerName("127.0.0.1");
         int id = 0;
         try {
             conn = ds.getConnection();
             stmt = conn.createStatement();
-            String updateStr = "UPDATE " + tabla + " SET " + datos + " WHERE " + comparacion;
+            String updateStr = "UPDATE `" + tabla + "` SET " + datos + " WHERE " + comparacion;
             id = stmt.executeUpdate(updateStr);
         } catch(SQLException ex){
             ex.toString();
@@ -79,6 +83,10 @@ public class MysqlExecute {
      * @return filas borradas
      */
     public int Borrar(String tabla, String comparacion){
+        ds.setUser("root");
+        ds.setPassword("1234");
+        ds.setDatabaseName("siuv");
+        ds.setServerName("127.0.0.1");
         int id = 0;
         try {
             conn = ds.getConnection();
