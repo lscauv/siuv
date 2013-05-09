@@ -79,7 +79,8 @@ public class Prueba_Insert extends javax.swing.JFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
         MysqlExecute m = new MysqlExecute();
-        m.Insertar("clientes", "'" + txtID.getText() + "','" + txtNombre.getText() + "'");
+       m.Insertar("clientes", "'" + txtID.getText() + "','" + txtNombre.getText() + "',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL");
+        
         //m.Actualizar("clientes", "Razon_social=" + txtNombre.getText(), "ID_RFC=" + txtID.getText());
         
     }//GEN-LAST:event_btnGuardarActionPerformed
