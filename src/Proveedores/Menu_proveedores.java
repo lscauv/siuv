@@ -15,6 +15,7 @@ public class Menu_proveedores extends javax.swing.JFrame {
      */
     public Menu_proveedores() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -26,12 +27,18 @@ public class Menu_proveedores extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu2 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
+        jMenu5 = new javax.swing.JMenu();
+        jMenuBar3 = new javax.swing.JMenuBar();
+        jMenu6 = new javax.swing.JMenu();
+        jMenu7 = new javax.swing.JMenu();
         jPanel1 = new javax.swing.JPanel();
         BotonAlta = new javax.swing.JButton();
-        BotonConsultarP = new javax.swing.JButton();
         BotonCompra = new javax.swing.JButton();
-        BotonConsultarS = new javax.swing.JButton();
-        BotonBaja = new javax.swing.JButton();
+        Facturas = new javax.swing.JButton();
         BotonMenuP = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -40,93 +47,86 @@ public class Menu_proveedores extends javax.swing.JFrame {
         mnuSalir = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         mnuAlta = new javax.swing.JMenuItem();
-        mnuBaja = new javax.swing.JMenuItem();
-        mnuConsultarP = new javax.swing.JMenuItem();
         mnuSolicitud = new javax.swing.JMenu();
         mnuCompra = new javax.swing.JMenuItem();
-        mnuConsultarS = new javax.swing.JMenuItem();
+        mnuFacturasRec = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+
+        jMenuItem1.setText("jMenuItem1");
+
+        jMenu2.setText("File");
+        jMenuBar2.add(jMenu2);
+
+        jMenu4.setText("Edit");
+        jMenuBar2.add(jMenu4);
+
+        jMenu5.setText("jMenu5");
+
+        jMenu6.setText("File");
+        jMenuBar3.add(jMenu6);
+
+        jMenu7.setText("Edit");
+        jMenuBar3.add(jMenu7);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        BotonAlta.setText("Alta de proveedor");
+        BotonAlta.setText("Padrón de proveedores");
         BotonAlta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonAltaActionPerformed(evt);
             }
         });
 
-        BotonConsultarP.setText("Consultar proveedor");
-        BotonConsultarP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonConsultarPActionPerformed(evt);
-            }
-        });
-
-        BotonCompra.setText("Solicitud de compras");
+        BotonCompra.setText("Orden de compras");
         BotonCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonCompraActionPerformed(evt);
             }
         });
 
-        BotonConsultarS.setText("Consultar solicitudes");
-        BotonConsultarS.addActionListener(new java.awt.event.ActionListener() {
+        Facturas.setText("Facturas");
+        Facturas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonConsultarSActionPerformed(evt);
-            }
-        });
-
-        BotonBaja.setText("Baja de proveedor");
-        BotonBaja.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonBajaActionPerformed(evt);
+                FacturasActionPerformed(evt);
             }
         });
 
         BotonMenuP.setText("Volver al menu principal");
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("PROVEEDORES");
+        jLabel1.setFont(new java.awt.Font("Euphemia", 1, 36)); // NOI18N
+        jLabel1.setText("Proveedores");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(BotonAlta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BotonCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(BotonConsultarS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BotonBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addComponent(BotonAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(BotonConsultarP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BotonMenuP, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(58, 58, 58))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(220, 220, 220)
-                .addComponent(jLabel1)
+                    .addComponent(BotonMenuP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BotonCompra, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Facturas, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(144, 144, 144))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(27, 27, 27)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BotonConsultarP, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(BotonAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(BotonBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BotonConsultarS, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BotonAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BotonCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BotonMenuP, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Facturas, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(BotonMenuP, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(81, 81, 81))
         );
 
@@ -154,8 +154,8 @@ public class Menu_proveedores extends javax.swing.JFrame {
 
         jMenu1.setText("Proveedores");
 
-        mnuAlta.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
-        mnuAlta.setText("Alta de proveedor");
+        mnuAlta.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
+        mnuAlta.setText("Padrón de proveedores");
         mnuAlta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuAltaActionPerformed(evt);
@@ -163,30 +163,12 @@ public class Menu_proveedores extends javax.swing.JFrame {
         });
         jMenu1.add(mnuAlta);
 
-        mnuBaja.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.CTRL_MASK));
-        mnuBaja.setText("Baja de proveedor");
-        mnuBaja.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuBajaActionPerformed(evt);
-            }
-        });
-        jMenu1.add(mnuBaja);
-
-        mnuConsultarP.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
-        mnuConsultarP.setText("Consultar proveedores");
-        mnuConsultarP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuConsultarPActionPerformed(evt);
-            }
-        });
-        jMenu1.add(mnuConsultarP);
-
         jMenuBar1.add(jMenu1);
 
         mnuSolicitud.setText("Compras");
 
         mnuCompra.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
-        mnuCompra.setText("Solicitud de compra");
+        mnuCompra.setText("Orden de compras");
         mnuCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuCompraActionPerformed(evt);
@@ -194,16 +176,20 @@ public class Menu_proveedores extends javax.swing.JFrame {
         });
         mnuSolicitud.add(mnuCompra);
 
-        mnuConsultarS.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        mnuConsultarS.setText("Consultar solicitudes");
-        mnuConsultarS.addActionListener(new java.awt.event.ActionListener() {
+        jMenuBar1.add(mnuSolicitud);
+
+        mnuFacturasRec.setText("Facturas");
+
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem2.setText("Facturas recibidas");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuConsultarSActionPerformed(evt);
+                jMenuItem2ActionPerformed(evt);
             }
         });
-        mnuSolicitud.add(mnuConsultarS);
+        mnuFacturasRec.add(jMenuItem2);
 
-        jMenuBar1.add(mnuSolicitud);
+        jMenuBar1.add(mnuFacturasRec);
 
         setJMenuBar(jMenuBar1);
 
@@ -233,11 +219,6 @@ public class Menu_proveedores extends javax.swing.JFrame {
         orden.setVisible(true);       
     }//GEN-LAST:event_mnuCompraActionPerformed
 
-    private void mnuConsultarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuConsultarPActionPerformed
-      ConsultarProveedor consultap = new ConsultarProveedor();
-      consultap.setVisible(true); 
-    }//GEN-LAST:event_mnuConsultarPActionPerformed
-
     private void mnuPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPrincipalActionPerformed
      //  Inicio principal = new Inicio();
      //   principal.setVisible(true); 
@@ -247,40 +228,25 @@ public class Menu_proveedores extends javax.swing.JFrame {
       System.exit(0);  
     }//GEN-LAST:event_mnuSalirActionPerformed
 
-    private void mnuBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuBajaActionPerformed
-        BajaProveedores baja = new BajaProveedores();
-        baja.setVisible(true);        
-    }//GEN-LAST:event_mnuBajaActionPerformed
-
     private void BotonAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAltaActionPerformed
       AltaProveedores proveedor = new AltaProveedores();
         proveedor.setVisible(true);
     }//GEN-LAST:event_BotonAltaActionPerformed
-
-    private void BotonBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBajaActionPerformed
-        BajaProveedores baja = new BajaProveedores();
-        baja.setVisible(true);  
-    }//GEN-LAST:event_BotonBajaActionPerformed
 
     private void BotonCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCompraActionPerformed
         OrdenCompras orden = new OrdenCompras();
         orden.setVisible(true);
     }//GEN-LAST:event_BotonCompraActionPerformed
 
-    private void BotonConsultarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonConsultarPActionPerformed
-        ConsultarProveedor consultap = new ConsultarProveedor();
-        consultap.setVisible(true);
-    }//GEN-LAST:event_BotonConsultarPActionPerformed
+    private void FacturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FacturasActionPerformed
+        FacturasRec fact = new FacturasRec();
+        fact.setVisible(true);
+    }//GEN-LAST:event_FacturasActionPerformed
 
-    private void BotonConsultarSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonConsultarSActionPerformed
-        ConsultaSolicitud consultas = new ConsultaSolicitud();
-        consultas.setVisible(true);
-    }//GEN-LAST:event_BotonConsultarSActionPerformed
-
-    private void mnuConsultarSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuConsultarSActionPerformed
-        ConsultaSolicitud consultas = new ConsultaSolicitud();
-        consultas.setVisible(true);
-    }//GEN-LAST:event_mnuConsultarSActionPerformed
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        FacturasRec fact = new FacturasRec();
+        fact.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -318,21 +284,26 @@ public class Menu_proveedores extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonAlta;
-    private javax.swing.JButton BotonBaja;
     private javax.swing.JButton BotonCompra;
-    private javax.swing.JButton BotonConsultarP;
-    private javax.swing.JButton BotonConsultarS;
     private javax.swing.JButton BotonMenuP;
+    private javax.swing.JButton Facturas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuBar jMenuBar3;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuItem mnuAlta;
-    private javax.swing.JMenuItem mnuBaja;
     private javax.swing.JMenuItem mnuCompra;
-    private javax.swing.JMenuItem mnuConsultarP;
-    private javax.swing.JMenuItem mnuConsultarS;
+    private javax.swing.JMenu mnuFacturasRec;
     private javax.swing.JMenuItem mnuPrincipal;
     private javax.swing.JMenuItem mnuSalir;
     private javax.swing.JMenu mnuSolicitud;

@@ -16,11 +16,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author ErikaChacon
- */
-public class AltaProveedores extends javax.swing.JFrame {
+
+public class AltaP extends javax.swing.JFrame {
 
     Connection conexion;
     ResultSet rs;
@@ -28,8 +25,10 @@ public class AltaProveedores extends javax.swing.JFrame {
     Statement stmt;
     MysqlDataSource data = new MysqlDataSource();
     String nombre;
-    public AltaProveedores() {
-       // setLocationRelativeTo(null);
+    public AltaP() {
+        initComponents();
+        setLocationRelativeTo(null);
+        
         this.psExecute = null;
         initComponents();
         data.setUser("root");
@@ -72,25 +71,20 @@ public class AltaProveedores extends javax.swing.JFrame {
         txtEntidad = new javax.swing.JTextField();
         txtTelefono = new javax.swing.JTextField();
         txtCorreo = new javax.swing.JTextField();
-        observacion = new javax.swing.JTextField();
+        txtBanco = new javax.swing.JTextField();
         txtCuenta = new javax.swing.JTextField();
         txtClabe = new javax.swing.JTextField();
         BotonGuardar = new javax.swing.JButton();
         Asalir = new javax.swing.JButton();
-        txtBanco = new javax.swing.JTextField();
+        observacion = new javax.swing.JTextField();
         txtDireccion = new javax.swing.JTextField();
         txtColonia = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
+        BotonBuscar = new javax.swing.JButton();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
         jLabel14 = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
         ComboBoxProveedor = new javax.swing.JComboBox();
-        BotonBuscar = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
-        BotonBorrar = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        txtProducto = new javax.swing.JTextField();
-        Limpiar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -113,10 +107,10 @@ public class AltaProveedores extends javax.swing.JFrame {
         jLabel7.setText("Colonia:");
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel8.setText("Codigo Postal:");
+        jLabel8.setText("C.P.");
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel9.setText("Ciuidad:");
+        jLabel9.setText("Ciudad:");
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel10.setText("Entidad federativa:");
@@ -131,7 +125,7 @@ public class AltaProveedores extends javax.swing.JFrame {
         jLabel13.setText("CLABE:");
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel15.setText("Teléfono:");
+        jLabel15.setText("Teléfono (Fijo):");
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel16.setText("Correo electrónico:");
@@ -184,9 +178,9 @@ public class AltaProveedores extends javax.swing.JFrame {
             }
         });
 
-        observacion.addActionListener(new java.awt.event.ActionListener() {
+        txtBanco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                observacionActionPerformed(evt);
+                txtBancoActionPerformed(evt);
             }
         });
 
@@ -202,7 +196,7 @@ public class AltaProveedores extends javax.swing.JFrame {
             }
         });
 
-        BotonGuardar.setText("Enviar");
+        BotonGuardar.setText("Guardar");
         BotonGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonGuardarActionPerformed(evt);
@@ -216,9 +210,9 @@ public class AltaProveedores extends javax.swing.JFrame {
             }
         });
 
-        txtBanco.addActionListener(new java.awt.event.ActionListener() {
+        observacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBancoActionPerformed(evt);
+                observacionActionPerformed(evt);
             }
         });
 
@@ -237,8 +231,15 @@ public class AltaProveedores extends javax.swing.JFrame {
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel17.setText("Observaciones");
 
-        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel14.setText("Buscar:");
+        BotonBuscar.setText("Buscar");
+        BotonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonBuscarActionPerformed(evt);
+            }
+        });
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel14.setText("Buscar:     ");
 
         txtBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -262,200 +263,114 @@ public class AltaProveedores extends javax.swing.JFrame {
             }
         });
 
-        BotonBuscar.setText("Buscar");
-        BotonBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonBuscarActionPerformed(evt);
-            }
-        });
-
-        BotonBorrar.setText("Eliminar");
-        BotonBorrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonBorrarActionPerformed(evt);
-            }
-        });
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel4.setText("Producto:");
-
-        txtProducto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtProductoActionPerformed(evt);
-            }
-        });
-
-        Limpiar.setText("Limpiar");
-        Limpiar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LimpiarActionPerformed(evt);
-            }
-        });
-
-        jButton1.setText("Actualizar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel14)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(ComboBoxProveedor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(32, 32, 32)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(106, 106, 106)
+                                .addComponent(txtContacto, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel14)
                                 .addGap(18, 18, 18)
-                                .addComponent(Limpiar)))
-                        .addContainerGap(551, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(ComboBoxProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel8))
+                                .addGap(76, 76, 76)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtDireccion)
+                                        .addComponent(txtColonia, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(83, 83, 83)
-                                .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel6))
-                                .addGap(76, 76, 76)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtDireccion)
-                                    .addComponent(txtColonia, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel4))
-                                .addGap(106, 106, 106)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtContacto, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
-                                    .addComponent(txtProducto))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(1, 1, 1)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel15)
-                                            .addComponent(jLabel16)
-                                            .addComponent(jLabel11)
-                                            .addComponent(jLabel12)
-                                            .addComponent(jLabel13)))
-                                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(53, 53, 53)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtCorreo)
-                                    .addComponent(txtCuenta)
-                                    .addComponent(txtClabe)
-                                    .addComponent(observacion, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtBanco, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel10)
                                     .addComponent(jLabel9))
-                                .addGap(57, 57, 57)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtEntidad)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(txtLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(112, 112, 112))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(130, 130, 130)
-                .addComponent(BotonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(BotonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(BotonBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(Asalir, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
-                .addGap(0, 0, Short.MAX_VALUE))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(58, 58, 58)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel10)
+                                        .addGap(57, 57, 57)
+                                        .addComponent(txtEntidad))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(1, 1, 1)
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel15)
+                                                    .addComponent(jLabel16)
+                                                    .addComponent(jLabel11)
+                                                    .addComponent(jLabel12)
+                                                    .addComponent(jLabel13)))
+                                            .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(53, 53, 53)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtBanco, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(txtCorreo)
+                                                .addComponent(txtCuenta)
+                                                .addComponent(txtClabe)
+                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(0, 0, Short.MAX_VALUE))
+                                                .addComponent(observacion))))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(BotonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(BotonGuardar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(Asalir, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(67, 67, 67)
+                        .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(40, 40, 40)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ComboBoxProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Limpiar))
-                .addGap(19, 19, 19)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel9)
-                            .addComponent(txtLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(11, 11, 11)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10)
-                            .addComponent(txtEntidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel15)
-                            .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel16)
-                            .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11)
-                            .addComponent(txtBanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel12)
-                            .addComponent(txtCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel13)
-                            .addComponent(txtClabe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(observacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel17)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addComponent(ComboBoxProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(txtEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(txtContacto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -471,19 +386,44 @@ public class AltaProveedores extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
                             .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(txtLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(BotonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BotonBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Asalir, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BotonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(jButton1)))
-                .addContainerGap(252, Short.MAX_VALUE))
+                            .addComponent(jLabel10)
+                            .addComponent(txtEntidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel15)
+                            .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel16)
+                            .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel11)
+                            .addComponent(observacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12)
+                            .addComponent(txtCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel13)
+                            .addComponent(txtClabe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtBanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel17))))
+                .addGap(42, 42, 42)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Asalir, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BotonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BotonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(172, 172, 172))
         );
 
         jScrollPane1.setViewportView(jPanel1);
@@ -492,14 +432,14 @@ public class AltaProveedores extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1016, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1021, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 627, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -513,7 +453,7 @@ public class AltaProveedores extends javax.swing.JFrame {
 
     private void BotonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonGuardarActionPerformed
        MysqlExecute m = new MysqlExecute();
-       m.Insertar("proveedores", "'" + txtID.getText() + "','" + txtEntidad.getText()+ "','" + txtLocalidad.getText() + "','" + txtProducto.getText() + "','" + txtEmpresa.getText() +  "','" + txtContacto.getText() + "','" + txtCodigo.getText()+ "','" + txtTelefono.getText()+  "','" + txtCorreo.getText() +  "','" + txtCuenta.getText() +   "','" + txtClabe.getText()   + "','" + observacion.getText() + "','" + txtDireccion.getText() + "','" + txtColonia.getText() +"','" + txtBanco.getText()+"'");
+       m.Insertar("proveedores", "'" + txtID.getText() + "','" + txtEntidad.getText()+ "','" + txtLocalidad.getText() +  "','" + txtEmpresa.getText() +  "','" + txtContacto.getText() + "','" + txtCodigo.getText()+ "','" + txtTelefono.getText()+  "','" + txtCorreo.getText() +  "','" + txtCuenta.getText() +   "','" + txtClabe.getText()   + "','" + observacion.getText() + "','" + txtDireccion.getText() + "','" + txtColonia.getText() + "',NULL");
     }//GEN-LAST:event_BotonGuardarActionPerformed
 
     private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
@@ -549,9 +489,9 @@ public class AltaProveedores extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCorreoActionPerformed
 
-    private void observacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_observacionActionPerformed
+    private void txtBancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBancoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_observacionActionPerformed
+    }//GEN-LAST:event_txtBancoActionPerformed
 
     private void txtCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCuentaActionPerformed
         // TODO add your handling code here:
@@ -561,9 +501,9 @@ public class AltaProveedores extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtClabeActionPerformed
 
-    private void txtBancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBancoActionPerformed
+    private void observacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_observacionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtBancoActionPerformed
+    }//GEN-LAST:event_observacionActionPerformed
 
     private void txtDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionActionPerformed
         // TODO add your handling code here:
@@ -573,24 +513,16 @@ public class AltaProveedores extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtColoniaActionPerformed
 
-    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBuscarActionPerformed
-
     private void ComboBoxProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxProveedorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ComboBoxProveedorActionPerformed
-
-    private void ComboBoxProveedorAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_ComboBoxProveedorAncestorAdded
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ComboBoxProveedorAncestorAdded
 
     private void BotonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarActionPerformed
        int ValorCombo = ComboBoxProveedor.getSelectedIndex();
         if (ValorCombo == 0) {
             String Campo = txtBuscar.getText();
         
-            String sqlBus = "SELECT ID_Proveedor, Entidad_fed, Localidad, ID_Producto, Nom_proveedor, Contacto_proveedor, Codigo_postal, Telefono, Email, Num_cuenta, Clabe, Observaciones, Direccion, Colonia, Banco FROM proveedores WHERE ID_Proveedor = '"+Campo+"'";
+            String sqlBus = "SELECT ID_Proveedor, Entidad_fed, Localidad, Nom_proveedor, Contacto_proveedor, Codigo_postal, Telefono, Email, Num_cuenta, Clabe, Observaciones, Direccion, Colonia, Banco FROM proveedores WHERE ID_Proveedor = '"+Campo+"'";
             try {
                 conexion = data.getConnection();
                 psExecute = conexion.prepareStatement(sqlBus);
@@ -599,7 +531,6 @@ public class AltaProveedores extends javax.swing.JFrame {
                 String ID_Proveedor = rs.getString("ID_Proveedor");
                 String Entidad_fed = rs.getString("Entidad_fed");
                 String Localidad = rs.getString("Localidad");
-                String Producto = rs.getString("ID_Producto");
                 String Nom_proveedor = rs.getString("Nom_proveedor");
                 String Contacto_proveedor = rs.getString("Contacto_proveedor");
                 String Codigo_postal = rs.getString("Codigo_postal");
@@ -616,7 +547,6 @@ public class AltaProveedores extends javax.swing.JFrame {
                 txtID.setText(ID_Proveedor);
                 txtEntidad.setText(Entidad_fed);
                 txtLocalidad.setText(Localidad);
-                txtProducto.setText(Producto);
                 txtEmpresa.setText(Nom_proveedor);
                 txtContacto.setText(Contacto_proveedor);
                 txtCodigo.setText(Codigo_postal);
@@ -624,10 +554,10 @@ public class AltaProveedores extends javax.swing.JFrame {
                 txtCorreo.setText(Email);
                 txtCuenta.setText(Num_cuenta);
                 txtClabe.setText(Clabe);
-                txtBanco.setText(Observaciones);
+                observacion.setText(Observaciones);
                 txtDireccion.setText(Direccion);
                 txtColonia.setText(Colonia);
-                observacion.setText(Banco);
+                txtBanco.setText(Banco);
                                 
             }
                 
@@ -643,7 +573,7 @@ public class AltaProveedores extends javax.swing.JFrame {
         {
          String Campo = txtBuscar.getText();
         
-            String sqlBus = "SELECT ID_Proveedor, Entidad_fed, Localidad, ID_Producto, Nom_proveedor, Contacto_proveedor, Codigo_postal, Telefono, Email, Num_cuenta, Clabe, Observaciones, Direccion, Colonia, Banco FROM proveedores WHERE Nom_proveedor = '"+Campo+"'";
+            String sqlBus = "SELECT ID_Proveedor, Entidad_fed, Localidad, Nom_proveedor, Contacto_proveedor, Codigo_postal, Telefono, Email, Num_cuenta, Clabe, Observaciones, Direccion, Colonia, Banco FROM proveedores WHERE Nom_proveedor = '"+Campo+"'";
             try {
                 conexion = data.getConnection();
                 psExecute = conexion.prepareStatement(sqlBus);
@@ -652,7 +582,6 @@ public class AltaProveedores extends javax.swing.JFrame {
                 String ID_Proveedor = rs.getString("ID_Proveedor");
                 String Entidad_fed = rs.getString("Entidad_fed");
                 String Localidad = rs.getString("Localidad");
-                String Producto = rs.getString("ID_Producto");
                 String Nom_proveedor = rs.getString("Nom_proveedor");
                 String Contacto_proveedor = rs.getString("Contacto_proveedor");
                 String Codigo_postal = rs.getString("Codigo_postal");
@@ -669,7 +598,6 @@ public class AltaProveedores extends javax.swing.JFrame {
                 txtID.setText(ID_Proveedor);
                 txtEntidad.setText(Entidad_fed);
                 txtLocalidad.setText(Localidad);
-                txtProducto.setText(Producto);
                 txtEmpresa.setText(Nom_proveedor);
                 txtContacto.setText(Contacto_proveedor);
                 txtCodigo.setText(Codigo_postal);
@@ -677,10 +605,10 @@ public class AltaProveedores extends javax.swing.JFrame {
                 txtCorreo.setText(Email);
                 txtCuenta.setText(Num_cuenta);
                 txtClabe.setText(Clabe);
-                txtBanco.setText(Observaciones);
+                observacion.setText(Observaciones);
                 txtDireccion.setText(Direccion);
                 txtColonia.setText(Colonia);
-                observacion.setText(Banco);
+                txtBanco.setText(Banco);
                                 
             }
                 
@@ -691,127 +619,17 @@ public class AltaProveedores extends javax.swing.JFrame {
                 
             }
             
-        } 
+        }    
+         
     }//GEN-LAST:event_BotonBuscarActionPerformed
 
-    private void BotonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBorrarActionPerformed
-      int ValorCombo = ComboBoxProveedor.getSelectedIndex();
-        if (ValorCombo == 0) {
-            String Campo = txtBuscar.getText();
-        
-            String deleteStr = "DELETE FROM proveedores WHERE ID_Proveedor = '"+Campo+"'";
-            int id = 0;
-            try {
-            conexion = data.getConnection();
-            stmt = conexion.createStatement();
-            id = stmt.executeUpdate(deleteStr);            
-
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this, ex.getMessage());
-                
-            }
-            
-        }
-        else if(ValorCombo == 1)
-        {
-          String Campo = txtBuscar.getText();
-        
-            String deleteStr = "DELETE FROM proveedores WHERE Nom_proveedor = '"+Campo+"'";
-            int id = 0;
-            try {
-                conexion = data.getConnection();
-            stmt = conexion.createStatement();
-            
-            id = stmt.executeUpdate(deleteStr);
-              
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this, ex.getMessage());
-                
-            }
-            
-        }  
-        
-    }//GEN-LAST:event_BotonBorrarActionPerformed
-
-    private void txtProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProductoActionPerformed
+    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtProductoActionPerformed
+    }//GEN-LAST:event_txtBuscarActionPerformed
 
-    private void LimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LimpiarActionPerformed
-                txtBuscar.setText(""); 
-                txtID.setText(""); 
-                txtEntidad.setText(""); 
-                txtLocalidad.setText("");
-                txtProducto.setText("");
-                txtEmpresa.setText(""); 
-                txtContacto.setText(""); 
-                txtCodigo.setText(""); 
-                txtTelefono.setText(""); 
-                txtCorreo.setText(""); 
-                txtCuenta.setText(""); 
-                txtClabe.setText(""); 
-                txtBanco.setText(""); 
-                txtDireccion.setText(""); 
-                txtColonia.setText(""); 
-                observacion.setText(""); 
-    }//GEN-LAST:event_LimpiarActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String Campo = txtBuscar.getText();
-       // String sqlBus = "SELECT ID_Proveedor, Entidad_fed, Localidad, ID_Producto, Nom_proveedor, Contacto_proveedor, Codigo_postal, Telefono, Email, Num_cuenta, Clabe, Observaciones, Direccion, Colonia, Banco FROM proveedores WHERE Nom_proveedor = '"+Campo+"'";
-        String updateStr = "UPDATE proveedores SET ID_Proveedor, Entidad_fed, Localidad, ID_Producto, Nom_proveedor, Contacto_proveedor, Codigo_postal, Telefono, Email, Num_cuenta, Clabe, Observaciones, Direccion, Colonia, Banco  WHERE ID_Proveedor = '"+Campo+"'";
-           
-        int id = 0;   
-        try {
-                 
-           conexion = data.getConnection();
-            stmt = conexion.createStatement();
-            id = stmt.executeUpdate(updateStr);  
-                
-                
-                
-               while (rs.next()) {
-                String ID_Proveedor = rs.getString("ID_Proveedor");
-                String Entidad_fed = rs.getString("Entidad_fed");
-                String Localidad = rs.getString("Localidad");
-                String Producto = rs.getString("ID_Producto");
-                String Nom_proveedor = rs.getString("Nom_proveedor");
-                String Contacto_proveedor = rs.getString("Contacto_proveedor");
-                String Codigo_postal = rs.getString("Codigo_postal");
-                String Telefono = rs.getString("Telefono");
-                String Email = rs.getString("Email");
-                String Num_cuenta = rs.getString("Num_cuenta");
-                String Clabe = rs.getString("Clabe");
-                String Observaciones = rs.getString("Observaciones");
-                String Direccion = rs.getString("Direccion");
-                String Colonia = rs.getString("Colonia");
-                String Banco = rs.getString("Banco");
-                
-                
-                txtID.setText(ID_Proveedor);
-                txtEntidad.setText(Entidad_fed);
-                txtLocalidad.setText(Localidad);
-                txtEmpresa.setText(Nom_proveedor);
-                txtContacto.setText(Contacto_proveedor);
-                txtCodigo.setText(Codigo_postal);
-                txtTelefono.setText(Telefono);
-                txtCorreo.setText(Email);
-                txtCuenta.setText(Num_cuenta);
-                txtClabe.setText(Clabe);
-                txtBanco.setText(Observaciones);
-                txtDireccion.setText(Direccion);
-                txtColonia.setText(Colonia);
-                observacion.setText(Banco);
-                                
-            }
-                
-
-                
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this, ex.getMessage());
-                
-            }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void ComboBoxProveedorAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_ComboBoxProveedorAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ComboBoxProveedorAncestorAdded
 
     /**
      * @param args the command line arguments
@@ -830,31 +648,29 @@ public class AltaProveedores extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AltaProveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AltaP.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AltaProveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AltaP.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AltaProveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AltaP.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AltaProveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AltaP.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AltaProveedores().setVisible(true);
+                new AltaP().setVisible(true);
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Asalir;
-    private javax.swing.JButton BotonBorrar;
     private javax.swing.JButton BotonBuscar;
     private javax.swing.JButton BotonGuardar;
     private javax.swing.JComboBox ComboBoxProveedor;
-    private javax.swing.JButton Limpiar;
-    private javax.swing.JButton jButton1;
+    private javax.swing.Box.Filler filler1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -866,7 +682,6 @@ public class AltaProveedores extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -874,7 +689,6 @@ public class AltaProveedores extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField observacion;
     private javax.swing.JTextField txtBanco;
     private javax.swing.JTextField txtBuscar;
@@ -889,7 +703,6 @@ public class AltaProveedores extends javax.swing.JFrame {
     private javax.swing.JTextField txtEntidad;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtLocalidad;
-    private javax.swing.JTextField txtProducto;
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }

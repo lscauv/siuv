@@ -98,4 +98,29 @@ public class MysqlExecute {
         }
         return id;
     }
+    
+    /**
+     * Borra datos de la tabla.
+     * @param tabla
+     * @param datos
+     * @return filas borradas
+     */
+    
+    public int Seleccionar(String tabla, String datos){
+        ds.setUser("root");
+        ds.setPassword("1234");
+        ds.setDatabaseName("siuv");
+        ds.setServerName("127.0.0.1");
+        int id = 0;
+        try {
+            conn = ds.getConnection();
+            stmt = conn.createStatement();
+            String selectStr = "SELECT `" + tabla + "` VALUES(" + datos + ")";
+            id = stmt.executeUpdate(selectStr);
+        } catch(SQLException ex){
+            ex.toString();
+        }
+        return id;
+    }
+    
 }
