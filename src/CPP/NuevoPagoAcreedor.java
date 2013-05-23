@@ -4,7 +4,6 @@
  */
 package CPP;
 
-
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,13 +11,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Sayli
  */
-public class PagosAcreedores extends javax.swing.JInternalFrame {
+public class NuevoPagoAcreedor extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form cobroUnico
@@ -31,76 +29,42 @@ public class PagosAcreedores extends javax.swing.JInternalFrame {
     MysqlDataSource data = new MysqlDataSource();
     String nombre;
     
-    public PagosAcreedores() {
+    public NuevoPagoAcreedor() {
         initComponents();
-        mostrardatos();
-        //setLocationRelativeTo(null);
     }
     
-        void mostrardatos(){
-        DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("ID_Acreedores");
-        modelo.addColumn("Nom_acreedor");
-        modelo.addColumn("Contacto_acreedor");
-        modelo.addColumn("Entidad_federativa");
-        modelo.addColumn("Localidad");
-        modelo.addColumn("Codigo_postal");
-        modelo.addColumn("Telefono");
-        modelo.addColumn("Email");
-        modelo.addColumn("Banco");
-        modelo.addColumn("Num_cuenta");
-        modelo.addColumn("Clave_deposito");
-        modelo.addColumn("Prestamo");
-        modelo.addColumn("Pagos_acumulados");
-        modelo.addColumn("Plazo_pagos");
-        modelo.addColumn("Fecha_pago");
-        
-        
-
-        
-        TbPagosAcreedores.setModel(modelo);
+ /*   public PagosAcreedores(String factura){
+        initComponents();
+        f = factura;
+        conseguirFactura(f);
+    }
+    
+    private void conseguirFactura(String fact){
         data.setUser("root");
-        data.setPassword("uv");
+        data.setPassword("1234");
         data.setDatabaseName("siuv");
         data.setServerName("127.0.0.1");
-       
-        String []datos = new String[15];
-            String sqlBus = "SELECT * FROM acreedores";
-            try {
-                conexion = data.getConnection();
-                psExecute = conexion.prepareStatement(sqlBus);
-                rs = psExecute.executeQuery();
-             
-                while (rs.next()) {
-                datos[0] = rs.getString(1);
-                datos[1] = rs.getString(2);
-                datos[2] = rs.getString(3);
-                datos[3] = rs.getString(4);
-                datos[4] = rs.getString(5);
-                datos[5] = rs.getString(6);
-                datos[6] = rs.getString(7);
-                datos[7] = rs.getString(8);
-                datos[8] = rs.getString(9);
-                datos[9] = rs.getString(10);
-                datos[10] = rs.getString(11);
-                datos[11] = rs.getString(12);
-                datos[12] = rs.getString(13);
-                datos[13] = rs.getString(14);
-                datos[14] = rs.getString(15);
-                modelo.addRow(datos);
-                    
-                    
-                  
-               }
-                TbPagosAcreedores.setModel(modelo);
+        
+        try
+        {
+            conexion = data.getConnection();
+            psExecute = conexion.prepareStatement("SELECT v.ID_NFacturas as 'ID', c.Razon_social as 'Nombre', v.ID_Producto as 'ID_Prod', p.Descripcion as 'Producto', v.Cant_producto as 'Cantidad', v.Sub_total_ventas as 'Subtotal', v.IVA, v.Total_venta as 'Total' FROM ventas v, clientes c, producto p WHERE v.ID_NFacturas = '" + fact + "' LIMIT 1;");
+            rs = psExecute.executeQuery();
+            while(rs.next()){
+             //   txtFactura.setText(rs.getString("ID"));
+                //txtCliente.setText(rs.getString("Nombre"));
+                //txtProducto.setText("ID: " + rs.getString("ID_Prod") + " Producto: " + rs.getString("Producto"));
+              //  Descuento.setText(rs.getString("Cantidad"));
+              //  Monto_restante.setText(rs.getString("Subtotal"));
+              //  txtIVA.setText(rs.getString("IVA"));
+             //   Date.setText(rs.getString("Total"));
             }
-            catch (SQLException ex){
-                JOptionPane.showMessageDialog (this, ex.getMessage());
-            }
+            
+        } catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
     }
-
-    
- 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -130,14 +94,12 @@ public class PagosAcreedores extends javax.swing.JInternalFrame {
         txtClave_deposito = new javax.swing.JTextField();
         txtNum_cuenta = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        Consulta = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         txtContacto_acreedor = new javax.swing.JTextField();
         txtEntidad_federativa = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
-        txtBuscar = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
         txtPrestamo = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         txtPagos_acumulados = new javax.swing.JTextField();
@@ -146,19 +108,16 @@ public class PagosAcreedores extends javax.swing.JInternalFrame {
         jLabel16 = new javax.swing.JLabel();
         txtFecha_pago = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
-        Eliminar = new javax.swing.JButton();
-        Limpiar = new javax.swing.JButton();
-        txtID_Acreedores = new javax.swing.JLabel();
+        Limpiar1 = new javax.swing.JButton();
+        txtID_Acreedores = new javax.swing.JTextField();
         lblNombre = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        TbPagosAcreedores = new javax.swing.JTable();
 
         setClosable(true);
         setForeground(java.awt.Color.white);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Consulta acreedores");
+        setTitle("Nuevo Pago acreedores");
         setFocusTraversalPolicyProvider(true);
         setInheritsPopupMenu(true);
         try {
@@ -204,13 +163,6 @@ public class PagosAcreedores extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Localidad");
 
-        Consulta.setText("Consulta");
-        Consulta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ConsultaActionPerformed(evt);
-            }
-        });
-
         jLabel11.setText("Clave_deposito");
 
         jLabel6.setText("Contacto");
@@ -228,12 +180,10 @@ public class PagosAcreedores extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel13.setText("Buscar RFC");
-
-        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
+        jButton3.setText("Guardar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBuscarActionPerformed(evt);
+                jButton3ActionPerformed(evt);
             }
         });
 
@@ -245,17 +195,10 @@ public class PagosAcreedores extends javax.swing.JInternalFrame {
 
         jLabel17.setText("Prestamo");
 
-        Eliminar.setText("Eliminar");
-        Eliminar.addActionListener(new java.awt.event.ActionListener() {
+        Limpiar1.setText("Limpiar");
+        Limpiar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EliminarActionPerformed(evt);
-            }
-        });
-
-        Limpiar.setText("Limpiar");
-        Limpiar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LimpiarActionPerformed(evt);
+                Limpiar1ActionPerformed(evt);
             }
         });
 
@@ -269,19 +212,9 @@ public class PagosAcreedores extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel11Layout.createSequentialGroup()
                         .addGap(56, 56, 56)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel11Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(26, 26, 26)
-                                .addComponent(Limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(123, 123, 123))
-                            .addGroup(jPanel11Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(txtID_Acreedores, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtID_Acreedores, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(123, 631, Short.MAX_VALUE))
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel11Layout.createSequentialGroup()
@@ -328,11 +261,13 @@ public class PagosAcreedores extends javax.swing.JInternalFrame {
                                                 .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(txtClave_deposito, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                             .addGroup(jPanel11Layout.createSequentialGroup()
-                                .addGap(152, 152, 152)
-                                .addComponent(Consulta, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(101, 101, 101)
+                                .addGap(211, 211, 211)
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(35, 35, 35)
+                                .addComponent(Limpiar1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
+                        .addGap(4, 4, Short.MAX_VALUE)
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel11Layout.createSequentialGroup()
@@ -344,33 +279,22 @@ public class PagosAcreedores extends javax.swing.JInternalFrame {
                                     .addGap(18, 18, 18)
                                     .addComponent(txtPlazo_pagos, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel11Layout.createSequentialGroup()
+                                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtFecha_pago, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel11Layout.createSequentialGroup()
                                 .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel11Layout.createSequentialGroup()
-                                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addComponent(txtFecha_pago, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(35, 35, 35))))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(23, 23, 23))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtID_Acreedores, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(59, 59, 59)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtID_Acreedores, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -436,9 +360,9 @@ public class PagosAcreedores extends javax.swing.JInternalFrame {
                                             .addComponent(txtFecha_pago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                         .addGap(35, 35, 35)))
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Consulta, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Limpiar1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19))
         );
 
@@ -446,22 +370,9 @@ public class PagosAcreedores extends javax.swing.JInternalFrame {
         jPanel11.setBounds(50, 50, 890, 410);
 
         lblNombre.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lblNombre.setText("Consulta acreedores");
+        lblNombre.setText("Nuevo Pago de acreedores");
         getContentPane().add(lblNombre);
         lblNombre.setBounds(110, 10, 190, 40);
-
-        TbPagosAcreedores.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane2.setViewportView(TbPagosAcreedores);
-
-        getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(20, 500, 1140, 220);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -478,114 +389,26 @@ public class PagosAcreedores extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNum_cuentaActionPerformed
 
-    private void ConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaActionPerformed
-        // TODO add your handling code here:
-              
-        data.setUser("root");
-        data.setPassword("uv");
-        data.setDatabaseName("siuv");
-        data.setServerName("127.0.0.1");
-        
-        String Campo = txtBuscar.getText();
-        
-            String sSQL = "SELECT ID_Acreedores, Nom_acreedor, Contacto_acreedor, Entidad_federativa, Localidad, Codigo_postal, Telefono, Email, Banco, Num_cuenta, Clave_deposito, Prestamo, Pagos_acumulados, Plazo_pagos, Fecha_pago FROM acreedores WHERE ID_Acreedores = '"+Campo+"';";
-            try {
-                conexion = data.getConnection();
-                psExecute = conexion.prepareStatement(sSQL);
-                rs = psExecute.executeQuery();
-             
-                while (rs.next()) {
-                String ID_Acreedores = rs.getString("ID_Acreedores");
-                String Nom_acreedor = rs.getString("Nom_acreedor");
-                String Contacto_acreedor = rs.getString("Contacto_acreedor");
-                String Entidad_federativa = rs.getString("Entidad_federativa");
-                String Localidad = rs.getString("Localidad");
-                String Codigo_postal = rs.getString("Codigo_postal");
-                String Telefono = rs.getString("Telefono");
-                String Email = rs.getString("Email");
-                String Banco = rs.getString("Banco");
-                String Num_cuenta = rs.getString("Num_cuenta");
-                String Clave_deposito = rs.getString("Clave_deposito");
-                String Prestamo = rs.getString("Prestamo");
-                String Pagos_acumulados = rs.getString("Pagos_acumulados");
-                String Plazo_pagos = rs.getString("Plazo_pagos");
-                String Fecha_pago = rs.getString("Fecha_pago");
-                
-                
-                
-                txtID_Acreedores.setText(ID_Acreedores);
-                txtNom_acreedor.setText(Nom_acreedor);
-                txtContacto_acreedor.setText(Contacto_acreedor);
-                txtEntidad_federativa.setText(Entidad_federativa);
-                txtLocalidad.setText(Localidad);
-                txtCodigo_postal.setText(Codigo_postal);
-                txtTelefono.setText(Telefono);
-                txtEmail.setText(Email);
-                txtBanco.setText(Banco);
-                txtNum_cuenta.setText(Num_cuenta);
-                txtClave_deposito.setText(Clave_deposito);
-                txtPrestamo.setText(Prestamo);
-                txtPagos_acumulados.setText(Pagos_acumulados);
-                txtPlazo_pagos.setText(Plazo_pagos);
-                txtFecha_pago.setText(Fecha_pago);
-               }
-            }
-            catch (SQLException ex){
-                JOptionPane.showMessageDialog (this, ex.getMessage());
-            }
-        
-        
-        
-        
-   /*     
-        CPP.MysqlExecute i = new CPP.MysqlExecute();
-        i.Insertar("acreedores", "'" + txtID_Acreedores.getText() + "','" + txtNom_acreedor.getText()+ "','" + txtContacto_acreedor.getText()+ "','" + txtEntidad_federativa.getText()+ "','" + txtLocalidad.getText()+ "','" + txtCodigo_postal.getText()+ "','" + txtTelefono.getText()+ "','" + txtEmail.getText()+ "','" + txtBanco.getText()+ "','" + txtNum_cuenta.getText() +"',NULL,NULL,NULL,NULL,NULL");
-        this.dispose();*/
-    }//GEN-LAST:event_ConsultaActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBuscarActionPerformed
 
     private void txtContacto_acreedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContacto_acreedorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtContacto_acreedorActionPerformed
 
-    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        // CPP.MysqlExecute i = new CPP.MysqlExecute();
-        // i.Actualizar("clientes", "Razon_social=" + txtNombre.getText(), "ID_RFC=" + txtID.getText());
-        data.setUser("root");
-        data.setPassword("uv");
-        data.setDatabaseName("siuv");
-        data.setServerName("127.0.0.1");
+         CPP.MysqlExecute a = new CPP.MysqlExecute();
+         a.Insertar("acreedores", "'" + txtID_Acreedores.getText() + "','" + txtNom_acreedor.getText()+ "','" + txtContacto_acreedor.getText()+ "','" + txtEntidad_federativa.getText()+ "','" + txtLocalidad.getText()+ "','" + txtCodigo_postal.getText()+ "','" + txtTelefono.getText()+ "','" + txtEmail.getText()+ "','" + txtBanco.getText()+ "','" + txtNum_cuenta.getText()+"','" + txtClave_deposito.getText()+"','" + txtPrestamo.getText()+"','" + txtPlazo_pagos.getText()+"','" + txtFecha_pago.getText()+"','" + txtPagos_acumulados.getText()+ "'"); 
+         
+         this.dispose();
 
-        String Campo = txtBuscar.getText();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
-        String deleteStr = "DELETE FROM acreedores WHERE ID_Acreedores= '"+Campo+"'";
-        System.exit(0);
-        int id = 0;
-        
-        try {
-            conexion = data.getConnection();
-            stmt = conexion.createStatement();
-            id = stmt.executeUpdate(deleteStr);
-            
-        }
-        catch (SQLException ex){
-            JOptionPane.showMessageDialog (this, ex.getMessage());
-        }
-        
-        
-    }//GEN-LAST:event_EliminarActionPerformed
-
-    private void LimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LimpiarActionPerformed
+    private void Limpiar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Limpiar1ActionPerformed
         // TODO add your handling code here:
-        txtBuscar.setText("");
+
         txtID_Acreedores.setText("");
         txtNom_acreedor.setText("");
         txtContacto_acreedor.setText("");
@@ -600,22 +423,17 @@ public class PagosAcreedores extends javax.swing.JInternalFrame {
         txtPrestamo.setText("");
         txtPagos_acumulados.setText("");
         txtPlazo_pagos.setText("");
-        txtFecha_pago.setText("");        
-        
-        
-    }//GEN-LAST:event_LimpiarActionPerformed
+        txtFecha_pago.setText("");
+    }//GEN-LAST:event_Limpiar1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Consulta;
-    private javax.swing.JButton Eliminar;
-    private javax.swing.JButton Limpiar;
-    private javax.swing.JTable TbPagosAcreedores;
+    private javax.swing.JButton Limpiar1;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
@@ -629,17 +447,15 @@ public class PagosAcreedores extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel11;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JTextField txtBanco;
-    private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtClave_deposito;
     private javax.swing.JTextField txtCodigo_postal;
     private javax.swing.JTextField txtContacto_acreedor;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtEntidad_federativa;
     private javax.swing.JTextField txtFecha_pago;
-    private javax.swing.JLabel txtID_Acreedores;
+    private javax.swing.JTextField txtID_Acreedores;
     private javax.swing.JTextField txtLocalidad;
     private javax.swing.JTextField txtNom_acreedor;
     private javax.swing.JTextField txtNum_cuenta;

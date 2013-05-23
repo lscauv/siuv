@@ -51,14 +51,20 @@ public class CPPInicio extends javax.swing.JFrame {
         PagosProveedor = new java.awt.Button();
         btnSalir3 = new java.awt.Button();
         PagosAcreedor = new java.awt.Button();
+        Pagos3 = new java.awt.Button();
+        Guardar = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
-        menuReportes = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
+        mnuPrincipal = new javax.swing.JMenuItem();
         NuevoAcreedor = new javax.swing.JMenuItem();
+        reportePagosPeriodoMenu1 = new javax.swing.JMenuItem();
+        mnuSalir = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
         NuevoPago = new javax.swing.JMenuItem();
-        jSeparator2 = new javax.swing.JPopupMenu.Separator();
-        reportePagosPeriodoMenu = new javax.swing.JMenuItem();
-        jSeparator3 = new javax.swing.JPopupMenu.Separator();
-        jMenu1 = new javax.swing.JMenu();
+        NuevoPago1 = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        mnuConsultarP = new javax.swing.JMenuItem();
+        mnuConsultarP1 = new javax.swing.JMenuItem();
 
         lblNombre.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblNombre.setText("Cuentas por Pagar: ");
@@ -121,13 +127,13 @@ public class CPPInicio extends javax.swing.JFrame {
 
         Pagos2.setActionCommand("button2");
         Pagos2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        Pagos2.setLabel("Pagos");
+        Pagos2.setLabel("Pagos acreedor");
         Pagos2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Pagos2ActionPerformed(evt);
             }
         });
-        Pagos2.setBounds(120, 380, 230, 70);
+        Pagos2.setBounds(120, 500, 230, 70);
         escritorio.add(Pagos2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         PagosProveedor.setActionCommand("button3");
@@ -138,7 +144,7 @@ public class CPPInicio extends javax.swing.JFrame {
                 PagosProveedorActionPerformed(evt);
             }
         });
-        PagosProveedor.setBounds(630, 380, 260, 70);
+        PagosProveedor.setBounds(500, 380, 240, 70);
         escritorio.add(PagosProveedor, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         btnSalir3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -160,44 +166,110 @@ public class CPPInicio extends javax.swing.JFrame {
                 PagosAcreedorActionPerformed(evt);
             }
         });
-        PagosAcreedor.setBounds(380, 380, 210, 70);
+        PagosAcreedor.setBounds(500, 500, 240, 70);
         escritorio.add(PagosAcreedor, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        Pagos3.setActionCommand("button2");
+        Pagos3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        Pagos3.setLabel("Pagos proveedor");
+        Pagos3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Pagos3ActionPerformed(evt);
+            }
+        });
+        Pagos3.setBounds(120, 380, 230, 70);
+        escritorio.add(Pagos3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         getContentPane().add(escritorio);
         escritorio.setBounds(0, 0, 1370, 750);
 
-        menuReportes.setText("Archivo");
+        Guardar.setText("Nuevo");
+        getContentPane().add(Guardar);
+        Guardar.setBounds(0, 0, 63, 23);
 
-        NuevoAcreedor.setText("Nuevo Acreedor");
+        jMenu3.setText("Menú");
+
+        mnuPrincipal.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_MASK));
+        mnuPrincipal.setText("Menú principal");
+        mnuPrincipal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuPrincipalActionPerformed(evt);
+            }
+        });
+        jMenu3.add(mnuPrincipal);
+
+        NuevoAcreedor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        NuevoAcreedor.setText("Nuevo acreedor");
         NuevoAcreedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NuevoAcreedorActionPerformed(evt);
             }
         });
-        menuReportes.add(NuevoAcreedor);
+        jMenu3.add(NuevoAcreedor);
 
-        NuevoPago.setText("Nuevo Pago");
+        reportePagosPeriodoMenu1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        reportePagosPeriodoMenu1.setText("Reporte de pagos por período");
+        reportePagosPeriodoMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reportePagosPeriodoMenu1ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(reportePagosPeriodoMenu1);
+
+        mnuSalir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, java.awt.event.InputEvent.CTRL_MASK));
+        mnuSalir.setText("Salir");
+        mnuSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuSalirActionPerformed(evt);
+            }
+        });
+        jMenu3.add(mnuSalir);
+
+        menuBar.add(jMenu3);
+
+        jMenu2.setText("Pagos");
+
+        NuevoPago.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        NuevoPago.setText("Nuevo Pago proveedor");
         NuevoPago.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NuevoPagoActionPerformed(evt);
             }
         });
-        menuReportes.add(NuevoPago);
-        menuReportes.add(jSeparator2);
+        jMenu2.add(NuevoPago);
 
-        reportePagosPeriodoMenu.setText("Reporte de pagos por período");
-        reportePagosPeriodoMenu.addActionListener(new java.awt.event.ActionListener() {
+        NuevoPago1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        NuevoPago1.setText("Nuevo Pago Acreedor");
+        NuevoPago1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                reportePagosPeriodoMenuActionPerformed(evt);
+                NuevoPago1ActionPerformed(evt);
             }
         });
-        menuReportes.add(reportePagosPeriodoMenu);
-        menuReportes.add(jSeparator3);
+        jMenu2.add(NuevoPago1);
 
-        menuBar.add(menuReportes);
+        menuBar.add(jMenu2);
 
-        jMenu1.setText("Opciones");
-        menuBar.add(jMenu1);
+        jMenu4.setText("Opciones");
+
+        mnuConsultarP.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
+        mnuConsultarP.setText("Consultar Proveedor");
+        mnuConsultarP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuConsultarPActionPerformed(evt);
+            }
+        });
+        jMenu4.add(mnuConsultarP);
+
+        mnuConsultarP1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
+        mnuConsultarP1.setText("Consultar Acreedor");
+        mnuConsultarP1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuConsultarP1ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(mnuConsultarP1);
+
+        menuBar.add(jMenu4);
 
         setJMenuBar(menuBar);
 
@@ -206,10 +278,10 @@ public class CPPInicio extends javax.swing.JFrame {
 
     private void Pagos2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Pagos2ActionPerformed
         // TODO add your handling code here:
-        Pagos obj = new Pagos();
-        escritorio.add(obj);
-        obj.show();
-        
+        NuevoPagoAcreedor a = new NuevoPagoAcreedor();
+        escritorio.add(a);
+        a.show();
+   
     }//GEN-LAST:event_Pagos2ActionPerformed
 
     private void btnSalir3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir3ActionPerformed
@@ -218,32 +290,71 @@ public class CPPInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalir3ActionPerformed
 
     private void PagosAcreedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PagosAcreedorActionPerformed
-        PagosPendientesAcreedor obj = new PagosPendientesAcreedor();
+        PagosAcreedores obj = new PagosAcreedores();
         escritorio.add(obj);
         obj.show();        
     }//GEN-LAST:event_PagosAcreedorActionPerformed
 
+    private void PagosProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PagosProveedorActionPerformed
+        PagosProveedores obj = new PagosProveedores();
+        escritorio.add(obj);
+        obj.show();
+    }//GEN-LAST:event_PagosProveedorActionPerformed
+
+    private void mnuConsultarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuConsultarPActionPerformed
+        PagosProveedores obj = new PagosProveedores();
+        escritorio.add(obj);
+        obj.show();
+    }//GEN-LAST:event_mnuConsultarPActionPerformed
+
+    private void mnuPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPrincipalActionPerformed
+        //  Inicio principal = new Inicio();
+        //   principal.setVisible(true);
+    }//GEN-LAST:event_mnuPrincipalActionPerformed
+
+    private void mnuSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSalirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_mnuSalirActionPerformed
+
     private void NuevoPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoPagoActionPerformed
+        // TODO add your handling code here:
         Pagos obj = new Pagos();
         escritorio.add(obj);
         obj.show();
     }//GEN-LAST:event_NuevoPagoActionPerformed
 
+    private void reportePagosPeriodoMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportePagosPeriodoMenu1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_reportePagosPeriodoMenu1ActionPerformed
+
     private void NuevoAcreedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoAcreedorActionPerformed
-        Acreedor obj = new Acreedor();
-        escritorio.add(obj);
-        obj.show();
+        // TODO add your handling code here:
+        Acreedor a = new Acreedor();
+        escritorio.add(a);
+        a.show();
+        
+               
     }//GEN-LAST:event_NuevoAcreedorActionPerformed
 
-    private void PagosProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PagosProveedorActionPerformed
-        PagosPendientesProveedor obj = new PagosPendientesProveedor();
+    private void Pagos3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Pagos3ActionPerformed
+        // TODO add your handling code here:
+        Pagos obj = new Pagos();
         escritorio.add(obj);
         obj.show();
-    }//GEN-LAST:event_PagosProveedorActionPerformed
+    }//GEN-LAST:event_Pagos3ActionPerformed
 
-    private void reportePagosPeriodoMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportePagosPeriodoMenuActionPerformed
+    private void NuevoPago1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoPago1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_reportePagosPeriodoMenuActionPerformed
+        NuevoPagoAcreedor a = new NuevoPagoAcreedor();
+        escritorio.add(a);
+        a.show();
+    }//GEN-LAST:event_NuevoPago1ActionPerformed
+
+    private void mnuConsultarP1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuConsultarP1ActionPerformed
+        PagosAcreedores obj = new PagosAcreedores();
+        escritorio.add(obj);
+        obj.show();        
+    }//GEN-LAST:event_mnuConsultarP1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -281,11 +392,14 @@ public class CPPInicio extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Guardar;
     private javax.swing.JMenuItem NuevoAcreedor;
     private javax.swing.JMenuItem NuevoPago;
+    private javax.swing.JMenuItem NuevoPago1;
     private java.awt.Button Pagos;
     private java.awt.Button Pagos1;
     private java.awt.Button Pagos2;
+    private java.awt.Button Pagos3;
     private java.awt.Button PagosAcreedor;
     private java.awt.Button PagosProveedor;
     private java.awt.Button btnSalir;
@@ -301,14 +415,17 @@ public class CPPInicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JPopupMenu.Separator jSeparator2;
-    private javax.swing.JPopupMenu.Separator jSeparator3;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblNombre1;
     private javax.swing.JLabel lblNombre3;
     private javax.swing.JMenuBar menuBar;
-    private javax.swing.JMenu menuReportes;
-    private javax.swing.JMenuItem reportePagosPeriodoMenu;
+    private javax.swing.JMenuItem mnuConsultarP;
+    private javax.swing.JMenuItem mnuConsultarP1;
+    private javax.swing.JMenuItem mnuPrincipal;
+    private javax.swing.JMenuItem mnuSalir;
+    private javax.swing.JMenuItem reportePagosPeriodoMenu1;
     // End of variables declaration//GEN-END:variables
 }

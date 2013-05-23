@@ -33,6 +33,7 @@ public class Pagos extends javax.swing.JInternalFrame {
     public Pagos() {
         initComponents();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,29 +49,27 @@ public class Pagos extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        Forma_Pago = new javax.swing.JTextField();
+        RFC = new javax.swing.JTextField();
         ID_Pago = new javax.swing.JTextField();
-        Descuento = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        NombreProveedor = new javax.swing.JTextField();
-        Monto_Descuento = new javax.swing.JTextField();
+        Monto_descuento = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        Codigo_postal = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        Monto_pago = new javax.swing.JTextField();
+        Monto_total = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        Pagos_Acumulados = new javax.swing.JTextField();
+        Pagos_acumulados = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        Monto_Restante = new javax.swing.JTextField();
-        Date = new javax.swing.JTextField();
+        Monto_restante = new javax.swing.JTextField();
+        Fecha_pagos = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         BTNGuardar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        Num_facturas = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        Entidad_federativa = new javax.swing.JTextField();
+        Limite_credito = new javax.swing.JTextField();
+        Empresa = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        Plazo_pago = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        ID_Facturas_rec = new javax.swing.JTextField();
 
         setClosable(true);
         setForeground(java.awt.Color.white);
@@ -94,23 +93,23 @@ public class Pagos extends javax.swing.JInternalFrame {
 
         jLabel1.setText("ID de pago");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(20, 70, 61, 23);
+        jLabel1.setBounds(20, 60, 100, 30);
 
-        jLabel2.setText("Forma de pago");
+        jLabel2.setText("Empresa");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(22, 104, 80, 20);
+        jLabel2.setBounds(20, 100, 90, 30);
 
-        jLabel3.setText("Descuento en %");
+        jLabel3.setText("RFC");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(20, 140, 80, 30);
+        jLabel3.setBounds(20, 140, 40, 40);
 
-        Forma_Pago.addActionListener(new java.awt.event.ActionListener() {
+        RFC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Forma_PagoActionPerformed(evt);
+                RFCActionPerformed(evt);
             }
         });
-        getContentPane().add(Forma_Pago);
-        Forma_Pago.setBounds(110, 100, 170, 30);
+        getContentPane().add(RFC);
+        RFC.setBounds(150, 140, 140, 30);
 
         ID_Pago.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,63 +117,67 @@ public class Pagos extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(ID_Pago);
-        ID_Pago.setBounds(80, 60, 200, 30);
+        ID_Pago.setBounds(150, 60, 140, 30);
 
-        Descuento.addActionListener(new java.awt.event.ActionListener() {
+        Monto_descuento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DescuentoActionPerformed(evt);
+                Monto_descuentoActionPerformed(evt);
             }
         });
-        getContentPane().add(Descuento);
-        Descuento.setBounds(110, 140, 170, 30);
-
-        jLabel4.setText("Proveedor");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(360, 110, 80, 20);
-        getContentPane().add(NombreProveedor);
-        NombreProveedor.setBounds(460, 100, 140, 30);
-        getContentPane().add(Monto_Descuento);
-        Monto_Descuento.setBounds(460, 180, 140, 30);
+        getContentPane().add(Monto_descuento);
+        Monto_descuento.setBounds(150, 190, 140, 30);
 
         jLabel8.setText("Monto de decuento");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(360, 180, 100, 30);
-        getContentPane().add(Codigo_postal);
-        Codigo_postal.setBounds(110, 180, 170, 30);
-
-        jLabel7.setText("Codigo postal");
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(20, 180, 80, 30);
+        jLabel8.setBounds(20, 190, 100, 30);
 
         jLabel5.setText("Pago");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(24, 234, 30, 20);
-        getContentPane().add(Monto_pago);
-        Monto_pago.setBounds(70, 230, 210, 30);
+        jLabel5.setBounds(20, 240, 30, 30);
+
+        Monto_total.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Monto_totalActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Monto_total);
+        Monto_total.setBounds(80, 240, 210, 30);
 
         jLabel10.setText("Pagos acumulados");
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(360, 220, 110, 30);
-        getContentPane().add(Pagos_Acumulados);
-        Pagos_Acumulados.setBounds(460, 220, 140, 30);
+        jLabel10.setBounds(350, 180, 100, 30);
+
+        Pagos_acumulados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Pagos_acumuladosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Pagos_acumulados);
+        Pagos_acumulados.setBounds(460, 180, 140, 30);
 
         jLabel9.setText("Restante por pagar");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(24, 274, 100, 20);
-        getContentPane().add(Monto_Restante);
-        Monto_Restante.setBounds(130, 270, 150, 30);
+        jLabel9.setBounds(20, 280, 110, 30);
 
-        Date.addActionListener(new java.awt.event.ActionListener() {
+        Monto_restante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DateActionPerformed(evt);
+                Monto_restanteActionPerformed(evt);
             }
         });
-        getContentPane().add(Date);
-        Date.setBounds(460, 270, 140, 30);
+        getContentPane().add(Monto_restante);
+        Monto_restante.setBounds(140, 280, 150, 30);
+
+        Fecha_pagos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Fecha_pagosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Fecha_pagos);
+        Fecha_pagos.setBounds(460, 230, 140, 30);
 
         jLabel11.setText("Fecha de pagos");
         getContentPane().add(jLabel11);
-        jLabel11.setBounds(360, 270, 90, 30);
+        jLabel11.setBounds(350, 230, 90, 30);
 
         BTNGuardar.setText("Guardar");
         BTNGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -194,23 +197,49 @@ public class Pagos extends javax.swing.JInternalFrame {
         getContentPane().add(jButton2);
         jButton2.setBounds(370, 370, 130, 30);
 
-        Num_facturas.addActionListener(new java.awt.event.ActionListener() {
+        jLabel12.setText("Limite de credito");
+        getContentPane().add(jLabel12);
+        jLabel12.setBounds(350, 120, 100, 30);
+
+        Limite_credito.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Num_facturasActionPerformed(evt);
+                Limite_creditoActionPerformed(evt);
             }
         });
-        getContentPane().add(Num_facturas);
-        Num_facturas.setBounds(430, 60, 170, 30);
+        getContentPane().add(Limite_credito);
+        Limite_credito.setBounds(460, 120, 140, 30);
 
-        jLabel6.setText("Num facturas");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(360, 60, 70, 30);
+        Empresa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EmpresaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Empresa);
+        Empresa.setBounds(150, 100, 140, 30);
 
-        jLabel12.setText("Entidad federativa");
-        getContentPane().add(jLabel12);
-        jLabel12.setBounds(360, 150, 100, 20);
-        getContentPane().add(Entidad_federativa);
-        Entidad_federativa.setBounds(460, 140, 140, 30);
+        jLabel7.setText("Plazo de pagos");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(350, 60, 80, 30);
+
+        Plazo_pago.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Plazo_pagoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Plazo_pago);
+        Plazo_pago.setBounds(460, 60, 140, 30);
+
+        jLabel13.setText("ID Factura");
+        getContentPane().add(jLabel13);
+        jLabel13.setBounds(350, 280, 90, 30);
+
+        ID_Facturas_rec.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ID_Facturas_recActionPerformed(evt);
+            }
+        });
+        getContentPane().add(ID_Facturas_rec);
+        ID_Facturas_rec.setBounds(460, 280, 140, 30);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -219,34 +248,13 @@ public class Pagos extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ID_PagoActionPerformed
 
-    private void DescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DescuentoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_DescuentoActionPerformed
-
     private void BTNGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNGuardarActionPerformed
         // TODO add your handling code here:
-                       
-      
-        //Para hacer pruebas con la base de datos, deben modificar la conexión que está aquí
-        data.setUser("root");
-        data.setPassword("1234");
-        data.setDatabaseName("siuv");
-        data.setServerName("127.0.0.1");
-
-        try
-        {
-            conexion = data.getConnection();
-            psExecute = conexion.prepareStatement("SELECT Nombre, Apellido FROM empleado WHERE ID_Empleado=1");
-            rs = psExecute.executeQuery();
-            while(rs.next())
-            {
-                lblNombre.setText("Nombre obtenido de MySQL: " + rs.getString("Nombre") + " " +  rs.getString("Apellido"));
-            }
-
-        } catch (SQLException ex)
-        {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
-        }
+         CPP.MysqlExecute m = new CPP.MysqlExecute();
+         m.Insertar("pago", "'" + ID_Pago.getText() + "','" + Empresa.getText()+ "','" + RFC.getText()+ "','" + Monto_descuento.getText()+ "','" + Monto_total.getText()+ "','" + Monto_restante.getText()+ "','" + Plazo_pago.getText()+ "','" + Limite_credito.getText()+ "','" + Pagos_acumulados.getText()+ "','" + Fecha_pagos.getText()+ "','" + ID_Facturas_rec.getText()+"'"); 
+         this.dispose();
+        
+  
     }//GEN-LAST:event_BTNGuardarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -254,43 +262,69 @@ public class Pagos extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void Num_facturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Num_facturasActionPerformed
+    private void Fecha_pagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Fecha_pagosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Num_facturasActionPerformed
+    }//GEN-LAST:event_Fecha_pagosActionPerformed
 
-    private void DateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DateActionPerformed
+    private void RFCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RFCActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_DateActionPerformed
+    }//GEN-LAST:event_RFCActionPerformed
 
-    private void Forma_PagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Forma_PagoActionPerformed
+    private void Limite_creditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Limite_creditoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Forma_PagoActionPerformed
+    }//GEN-LAST:event_Limite_creditoActionPerformed
+
+    private void Monto_totalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Monto_totalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Monto_totalActionPerformed
+
+    private void Monto_restanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Monto_restanteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Monto_restanteActionPerformed
+
+    private void Monto_descuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Monto_descuentoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Monto_descuentoActionPerformed
+
+    private void Pagos_acumuladosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Pagos_acumuladosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Pagos_acumuladosActionPerformed
+
+    private void EmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmpresaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EmpresaActionPerformed
+
+    private void Plazo_pagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Plazo_pagoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Plazo_pagoActionPerformed
+
+    private void ID_Facturas_recActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ID_Facturas_recActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ID_Facturas_recActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTNGuardar;
-    private javax.swing.JTextField Codigo_postal;
-    private javax.swing.JTextField Date;
-    private javax.swing.JTextField Descuento;
-    private javax.swing.JTextField Entidad_federativa;
-    private javax.swing.JTextField Forma_Pago;
+    private javax.swing.JTextField Empresa;
+    private javax.swing.JTextField Fecha_pagos;
+    private javax.swing.JTextField ID_Facturas_rec;
     private javax.swing.JTextField ID_Pago;
-    private javax.swing.JTextField Monto_Descuento;
-    private javax.swing.JTextField Monto_Restante;
-    private javax.swing.JTextField Monto_pago;
-    private javax.swing.JTextField NombreProveedor;
-    private javax.swing.JTextField Num_facturas;
-    private javax.swing.JTextField Pagos_Acumulados;
+    private javax.swing.JTextField Limite_credito;
+    private javax.swing.JTextField Monto_descuento;
+    private javax.swing.JTextField Monto_restante;
+    private javax.swing.JTextField Monto_total;
+    private javax.swing.JTextField Pagos_acumulados;
+    private javax.swing.JTextField Plazo_pago;
+    private javax.swing.JTextField RFC;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
