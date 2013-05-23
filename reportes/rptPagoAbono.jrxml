@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="665cca05-b10a-4812-95eb-7a762436910a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     abonos.`ID_Abonos` AS ID_Abonos,
+     abonos.`ID_CPC` AS ID_CPC,
+     abonos.`Fecha_vencimiento` AS Fecha_vencimiento,
+     abonos.`Saldo_inicial` AS Saldo_inicial,
+     abonos.`Saldo_final` AS Saldo_final,
+     abonos.`Fecha_inicio` AS Fecha_inicio,
+     abonos.`Fecha_termino` AS Fecha_termino
+FROM
+     `abonos` abonos
+
+WHERE ID_Abonos = $P{id}]]>
+	</queryString>
+	<field name="ID_Abonos" class="java.lang.Long"/>
+	<field name="ID_CPC" class="java.lang.Long"/>
+	<field name="Fecha_vencimiento" class="java.sql.Date"/>
+	<field name="Saldo_inicial" class="java.lang.Float"/>
+	<field name="Saldo_final" class="java.lang.Float"/>
+	<field name="Fecha_inicio" class="java.sql.Date"/>
+	<field name="Fecha_termino" class="java.sql.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="e7f35049-398d-4739-9fed-b3bfb78d1dd2" x="127" y="15" width="301" height="33"/>
+				<textElement textAlignment="Center">
+					<font fontName="Segoe UI" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RECIBO DE ABONO]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -35,7 +35,6 @@ public class CPCInicio extends javax.swing.JFrame {
         cuentasPendientesMenu = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         cobrosMenu = new javax.swing.JMenuItem();
-        cobrosBatchMenu = new javax.swing.JMenuItem();
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
         salirMenu = new javax.swing.JMenuItem();
         menuReportes = new javax.swing.JMenu();
@@ -70,9 +69,6 @@ public class CPCInicio extends javax.swing.JFrame {
             }
         });
         menuCuentas.add(cobrosMenu);
-
-        cobrosBatchMenu.setText("Cobros en lotes");
-        menuCuentas.add(cobrosBatchMenu);
         menuCuentas.add(jSeparator4);
 
         salirMenu.setText("Salir");
@@ -187,7 +183,6 @@ public class CPCInicio extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem cobrosBatchMenu;
     private javax.swing.JMenuItem cobrosMenu;
     private javax.swing.JMenuItem cuentasPendientesMenu;
     public static javax.swing.JDesktopPane desktopPane;
