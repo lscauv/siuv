@@ -33,104 +33,64 @@ public class Menu_principal extends javax.swing.JFrame {
         btnInventarios = new javax.swing.JButton();
         btnProveedores = new javax.swing.JButton();
         btnVentas = new javax.swing.JButton();
-        btnEjemplos = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+        getContentPane().setLayout(null);
 
         btnCPC.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnCPC.setText("Cuentas por cobrar");
+        btnCPC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/CLI1.png"))); // NOI18N
         btnCPC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCPCActionPerformed(evt);
             }
         });
+        getContentPane().add(btnCPC);
+        btnCPC.setBounds(100, 140, 151, 123);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setText("SIUV - Sistema de apoyo de decisiones");
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("SIUV - Sistema de Apoyo de Decisiones");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(290, 50, 332, 25);
 
         btnCPP.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnCPP.setText("Cuentas por pagar");
-
-        btnClientes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnClientes.setText("Clientes");
-
-        btnInventarios.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnInventarios.setText("Inventarios");
-
-        btnProveedores.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnProveedores.setText("Proveedores");
-
-        btnVentas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnVentas.setText("Ventas");
-
-        btnEjemplos.setText("Ejemplos");
-        btnEjemplos.addActionListener(new java.awt.event.ActionListener() {
+        btnCPP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/INV1.png"))); // NOI18N
+        btnCPP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEjemplosActionPerformed(evt);
+                btnCPPActionPerformed(evt);
             }
         });
+        getContentPane().add(btnCPP);
+        btnCPP.setBounds(100, 320, 151, 123);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(140, 140, 140)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnCPC)
-                                .addGap(18, 18, 18))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnCPP)
-                                .addGap(22, 22, 22)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnClientes)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnInventarios))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnVentas)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnProveedores))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(162, 162, 162)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(294, 294, 294)
-                        .addComponent(btnEjemplos)))
-                .addContainerGap(169, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(110, 110, 110)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCPC)
-                    .addComponent(btnClientes)
-                    .addComponent(btnInventarios))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCPP)
-                    .addComponent(btnVentas)
-                    .addComponent(btnProveedores))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-                .addComponent(btnEjemplos)
-                .addGap(70, 70, 70))
-        );
+        btnClientes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/CPP1.png"))); // NOI18N
+        getContentPane().add(btnClientes);
+        btnClientes.setBounds(360, 140, 151, 123);
 
-        pack();
+        btnInventarios.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnInventarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/VEN1.png"))); // NOI18N
+        getContentPane().add(btnInventarios);
+        btnInventarios.setBounds(620, 140, 151, 123);
+
+        btnProveedores.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/PRO1.png"))); // NOI18N
+        getContentPane().add(btnProveedores);
+        btnProveedores.setBounds(620, 320, 151, 121);
+
+        btnVentas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/CPC1.png"))); // NOI18N
+        getContentPane().add(btnVentas);
+        btnVentas.setBounds(350, 320, 151, 123);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondoGris.png"))); // NOI18N
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(0, 0, 860, 500);
+
+        setBounds(0, 0, 874, 535);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnEjemplosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEjemplosActionPerformed
-        // TODO add your handling code here:
-        Inicio index = new Inicio();
-        index.setAlwaysOnTop(true);
-        index.setVisible(true);
-    }//GEN-LAST:event_btnEjemplosActionPerformed
 
     private void btnCPCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCPCActionPerformed
         // TODO add your handling code here:
@@ -139,6 +99,10 @@ public class Menu_principal extends javax.swing.JFrame {
         
         cpc.setVisible(true);
     }//GEN-LAST:event_btnCPCActionPerformed
+
+    private void btnCPPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCPPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCPPActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,10 +142,10 @@ public class Menu_principal extends javax.swing.JFrame {
     private javax.swing.JButton btnCPC;
     private javax.swing.JButton btnCPP;
     private javax.swing.JButton btnClientes;
-    private javax.swing.JButton btnEjemplos;
     private javax.swing.JButton btnInventarios;
     private javax.swing.JButton btnProveedores;
     private javax.swing.JButton btnVentas;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
