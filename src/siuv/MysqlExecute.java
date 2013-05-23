@@ -20,6 +20,7 @@ public class MysqlExecute {
     Connection conn;
     PreparedStatement psExecute;
     Statement stmt;
+    ResultSet rs;
     MysqlDataSource ds = new MysqlDataSource();
     
     /**
@@ -45,7 +46,11 @@ public class MysqlExecute {
             conn = ds.getConnection();
             stmt = conn.createStatement();
             String insertStr = "INSERT INTO `" + tabla + "` VALUES(" + datos + ")";
-            id = stmt.executeUpdate(insertStr);
+            stmt.executeUpdate(insertStr, Statement.RETURN_GENERATED_KEYS);
+            rs = stmt.getGeneratedKeys();
+            if (rs.next()){
+                id = rs.getInt(1);
+            }
         } catch(SQLException ex){
             ex.toString();
         }
