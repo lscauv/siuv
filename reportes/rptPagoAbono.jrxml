@@ -5,26 +5,14 @@
 	<property name="ireport.y" value="0"/>
 	<parameter name="id" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT
-     abonos.`ID_Abonos` AS ID_Abonos,
-     abonos.`ID_CPC` AS ID_CPC,
-     abonos.`Fecha_vencimiento` AS Fecha_vencimiento,
-     abonos.`Saldo_inicial` AS Saldo_inicial,
-     abonos.`Saldo_final` AS Saldo_final,
-     abonos.`Fecha_inicio` AS Fecha_inicio,
-     abonos.`Fecha_termino` AS Fecha_termino
-FROM
-     `abonos` abonos
-
-WHERE ID_Abonos = $P{id}]]>
+		<![CDATA[SELECT abonos.ID_Abonos, abonos.Fecha_inicio, abonos.Fecha_vencimiento, abonos.Saldo_inicial, abonos.Saldo_final, clientes.Razon_social FROM abonos, cuentas_por_cobrar, clientes WHERE (abonos.ID_CPC = cuentas_por_cobrar.ID_CC AND clientes.ID_RFC = cuentas_por_cobrar.ID_RFC) AND abonos.ID_Abonos = $P{id}]]>
 	</queryString>
 	<field name="ID_Abonos" class="java.lang.Long"/>
-	<field name="ID_CPC" class="java.lang.Long"/>
+	<field name="Fecha_inicio" class="java.sql.Date"/>
 	<field name="Fecha_vencimiento" class="java.sql.Date"/>
 	<field name="Saldo_inicial" class="java.lang.Float"/>
 	<field name="Saldo_final" class="java.lang.Float"/>
-	<field name="Fecha_inicio" class="java.sql.Date"/>
-	<field name="Fecha_termino" class="java.sql.Date"/>
+	<field name="Razon_social" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -40,21 +28,83 @@ WHERE ID_Abonos = $P{id}]]>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch"/>
+		<band height="210" splitType="Stretch">
+			<textField>
+				<reportElement uuid="87a437eb-4a00-40c0-b169-d26a63ad0de7" x="12" y="11" width="250" height="20"/>
+				<textElement>
+					<font fontName="Segoe UI" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Abono no. "+$F{ID_Abonos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d42f3927-abf0-4717-a61e-91eb727ff9a5" x="12" y="31" width="284" height="20"/>
+				<textElement>
+					<font fontName="Segoe UI" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Razón social: "+$F{Razon_social}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement uuid="a4f4bbe3-ad27-45de-9aa3-29c70904f2b6" x="296" y="11" width="259" height="20"/>
+				<textElement textAlignment="Right">
+					<font fontName="Segoe UI" size="12" isBold="false" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Fecha en abono: "+new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="caa00766-8dc6-46a3-9c14-969ef08d56bb" x="12" y="100" width="130" height="20"/>
+				<textElement>
+					<font fontName="Segoe UI" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Saldo anterior: "]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="1ceaaba2-e14d-4f8c-8992-f20856701e73" x="12" y="120" width="130" height="20"/>
+				<textElement>
+					<font fontName="Segoe UI" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Abono realizado: "]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="62c216d7-c902-461c-91b1-1c7523524f4b" x="180" y="72" width="193" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Segoe UI" size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Detalles del abono]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="4177cd2d-b657-49da-8aa6-133cdf2af51c" x="142" y="120" width="179" height="20"/>
+				<textElement>
+					<font fontName="Segoe UI" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Integer($F{Saldo_final}.toInteger() - $F{Saldo_inicial}.toInteger())]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="5ff90ff2-2c2d-41df-adaa-5c5fa979a314" x="142" y="100" width="179" height="20"/>
+				<textElement>
+					<font fontName="Segoe UI" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Saldo_inicial}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="c7273a55-3cde-49a3-8e7e-aafad6f6502f" x="142" y="140" width="179" height="20"/>
+				<textElement>
+					<font fontName="Segoe UI" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Saldo_final}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="cd110083-a894-4ede-b002-f933de39a81b" x="12" y="140" width="130" height="20"/>
+				<textElement>
+					<font fontName="Segoe UI" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Restante por pagar: "]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageHeader>
-	<columnHeader>
-		<band height="61" splitType="Stretch"/>
-	</columnHeader>
-	<detail>
-		<band height="125" splitType="Stretch"/>
-	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
 		<band height="54" splitType="Stretch"/>
 	</pageFooter>
-	<summary>
-		<band height="42" splitType="Stretch"/>
-	</summary>
 </jasperReport>
