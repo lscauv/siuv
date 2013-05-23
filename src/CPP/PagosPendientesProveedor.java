@@ -162,13 +162,13 @@ public class PagosPendientesProveedor extends javax.swing.JInternalFrame {
             int row = tabla.getSelectedRow();
             //int col = tabla.getSelectedColumn();
             String factura = tabla.getValueAt(row, 2).toString();
-            cobroUnico cobro = new cobroUnico(factura);
+            /*cobroUnico cobro = new cobroUnico(factura);
             cobro.setVisible(true);
             
             Dimension dim = CPCInicio.desktopPane.getSize();
             Dimension winDim = cobro.getSize();
             cobro.setLocation((dim.width - winDim.width) / 2, (dim.height - winDim.height) / 2);
-            CPCInicio.desktopPane.add(cobro, new Integer(10));
+            CPCInicio.desktopPane.add(cobro, new Integer(10));*/
             
             //JOptionPane.showConfirmDialog(this, "RFC: " + RFC, "RFC Seleccionado", 2);
         }

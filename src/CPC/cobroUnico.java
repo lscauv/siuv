@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import siuv.MysqlExecute;
 
 /**
  *
@@ -38,9 +39,10 @@ public class cobroUnico extends javax.swing.JInternalFrame {
         initComponents();
     }
     
-    public cobroUnico(String factura){
+    public cobroUnico(String factura, String cxc){
         initComponents();
         f = factura;
+        txtCxc.setText(cxc);
         conseguirFactura(f);
     }
     
@@ -53,7 +55,7 @@ public class cobroUnico extends javax.swing.JInternalFrame {
         try
         {
             conexion = data.getConnection();
-            psExecute = conexion.prepareStatement("SELECT v.ID_NFacturas as 'ID', c.Razon_social as 'Nombre', v.ID_Producto as 'ID_Prod', p.Descripcion as 'Producto', v.Cant_producto as 'Cantidad', v.Sub_total_ventas as 'Subtotal', v.IVA, v.Total_venta as 'Total' FROM ventas v, clientes c, producto p WHERE v.ID_NFacturas = '" + fact + "' LIMIT 1;");
+            psExecute = conexion.prepareStatement("SELECT v.ID_NFacturas as 'ID', c.Razon_social as 'Nombre', v.ID_Producto as 'ID_Prod', p.Descripcion as 'Producto', v.Cant_producto as 'Cantidad', v.Sub_total_ventas as 'Subtotal', v.IVA, v.Total_venta as 'Total' FROM ventas v, clientes c, producto p WHERE v.ID_NFacturas = '" + fact + "' AND c.ID_RFC = v.ID_RFC LIMIT 1;");
             rs = psExecute.executeQuery();
             while(rs.next()){
                 txtFactura.setText(rs.getString("ID"));
@@ -97,6 +99,12 @@ public class cobroUnico extends javax.swing.JInternalFrame {
         txtTotal = new javax.swing.JTextField();
         btnPagar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        txtCantidadPagar = new javax.swing.JTextField();
+        txtPendiente = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        txtCxc = new javax.swing.JTextField();
 
         setClosable(true);
         setMaximizable(true);
@@ -139,6 +147,12 @@ public class cobroUnico extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel8.setText("Cantidad a pagar");
+
+        jLabel9.setText("Pendiente");
+
+        jLabel10.setText("CXC");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -152,30 +166,43 @@ public class cobroUnico extends javax.swing.JInternalFrame {
                         .addComponent(jScrollPane1))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2))
+                                .addComponent(txtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtCxc, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(txtIVA, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                                    .addComponent(txtSubtotal, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGap(118, 118, 118)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel9))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel7))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(txtIVA, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-                                        .addComponent(txtSubtotal, javax.swing.GroupLayout.Alignment.LEADING)))))
-                        .addGap(0, 174, Short.MAX_VALUE))
+                                    .addComponent(txtPendiente)
+                                    .addComponent(txtCantidadPagar)))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnPagar)
@@ -189,7 +216,10 @@ public class cobroUnico extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtFactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel10)
+                        .addComponent(txtCxc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -205,11 +235,17 @@ public class cobroUnico extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(txtSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel9)
+                        .addComponent(txtPendiente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txtIVA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtIVA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel8)
+                        .addComponent(txtCantidadPagar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -218,20 +254,36 @@ public class cobroUnico extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPagar)
                     .addComponent(btnSalir))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
-        HashMap param = new HashMap();
-        param.put("id", new Integer(6));
-        reportViewer reporte = new reportViewer("./reportes/rptPagoAbono.jasper", param);
-        reporte.setVisible(true);
-        CPCInicio.desktopPane.add(reporte, new Integer(20));
+        MysqlExecute ejecutar = new MysqlExecute();
+        int id = 0;
+        java.util.Date dt = new java.util.Date();
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
+        int pendiente = Integer.parseInt(txtPendiente.getText());
+        int pagado = Integer.parseInt(txtCantidadPagar.getText());
+        id = ejecutar.Insertar("abonos","NULL," + txtCxc.getText() + ",'" + sdf.format(dt) + "','" + sdf.format(dt) + "','" + sdf.format(dt) + "'," + pendiente +  "," + new Integer(pendiente - pagado));
+        CargarReporte(id);
     }//GEN-LAST:event_btnPagarActionPerformed
 
+    private void CargarReporte(int id){
+        HashMap param = new HashMap();
+        param.put("id", id);
+        reportViewer reporte = new reportViewer("./reportes/rptPagoAbono.jasper", param);
+        CPCInicio.desktopPane.add(reporte, new Integer(20));
+        reporte.setVisible(true);
+        try{
+            reporte.setMaximum(true);
+        } catch(PropertyVetoException ex){
+            ex.printStackTrace();
+        }
+    }
+    
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
         this.dispose();
@@ -241,17 +293,23 @@ public class cobroUnico extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnPagar;
     private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtCantidad;
+    private javax.swing.JTextField txtCantidadPagar;
     private javax.swing.JTextField txtCliente;
+    private javax.swing.JTextField txtCxc;
     private javax.swing.JTextField txtFactura;
     private javax.swing.JTextField txtIVA;
+    private javax.swing.JTextField txtPendiente;
     private javax.swing.JTextArea txtProducto;
     private javax.swing.JTextField txtSubtotal;
     private javax.swing.JTextField txtTotal;

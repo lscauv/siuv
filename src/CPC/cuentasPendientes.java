@@ -37,7 +37,7 @@ public class cuentasPendientes extends javax.swing.JInternalFrame {
         try
         {
             conexion = data.getConnection();
-            psExecute = conexion.prepareStatement("SELECT cxc.ID_CC as 'ID', cli.ID_RFC as 'RFC', v.ID_NFacturas as 'Factura', c.Cantidad, d.Folio, d.Fecha_documento as 'Fecha' FROM cuentas_por_cobrar cxc, ventas v, credito c, doc_cobrar d, clientes cli WHERE cxc.ID_NFacturas = v.ID_NFacturas AND cli.ID_RFC = cxc.ID_RFC;");
+            psExecute = conexion.prepareStatement("SELECT cxc.ID_CC as ID, cxc.ID_RFC as RFC, c.Razon_social as Nombre, cxc.ID_NFacturas as Factura, cxc.Total_venta as Total FROM cuentas_por_cobrar cxc, clientes c WHERE cxc.`Status` = 'Abierto' AND c.ID_RFC = cxc.ID_RFC;");
             rs = psExecute.executeQuery();
             siuv.ListTableModel tmodel = siuv.ListTableModel.createModelFromResultSet(rs);
             jTable1.setModel(tmodel);
@@ -127,8 +127,9 @@ public class cuentasPendientes extends javax.swing.JInternalFrame {
             JTable tabla = (JTable)evt.getSource();
             int row = tabla.getSelectedRow();
             //int col = tabla.getSelectedColumn();
-            String factura = tabla.getValueAt(row, 2).toString();
-            cobroUnico cobro = new cobroUnico(factura);
+            String factura = tabla.getValueAt(row, 3).toString();
+            String cxc = tabla.getValueAt(row, 0).toString();
+            cobroUnico cobro = new cobroUnico(factura, cxc);
             cobro.setVisible(true);
             
             Dimension dim = CPCInicio.desktopPane.getSize();

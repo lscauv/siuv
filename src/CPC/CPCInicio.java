@@ -87,6 +87,11 @@ public class CPCInicio extends javax.swing.JFrame {
         menuReportes.setText("Reportes");
 
         pagosRealizadosMenu.setText("Pagos realizados");
+        pagosRealizadosMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pagosRealizadosMenuActionPerformed(evt);
+            }
+        });
         menuReportes.add(pagosRealizadosMenu);
 
         pagosPendientesMenu.setText("Pagos pendientes");
@@ -157,17 +162,21 @@ public class CPCInicio extends javax.swing.JFrame {
 
     private void pagosPendientesMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pagosPendientesMenuActionPerformed
         // TODO add your handling code here:
+        
+    }//GEN-LAST:event_pagosPendientesMenuActionPerformed
+
+    private void pagosRealizadosMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pagosRealizadosMenuActionPerformed
+        // TODO add your handling code here:
         HashMap param = new HashMap();
-        param.put("id", new Integer(6));
-        reportViewer reporte = new reportViewer("./reportes/rptPagoAbono.jasper", param);
+        reportViewer reporte = new reportViewer("./reportes/rptAbonosRealizados.jasper", param);
         CPCInicio.desktopPane.add(reporte, new Integer(20));
         reporte.setVisible(true);
-            try{
-                reporte.setMaximum(true);
-            } catch(PropertyVetoException ex){
-                ex.printStackTrace();
-            }
-    }//GEN-LAST:event_pagosPendientesMenuActionPerformed
+        try{
+            reporte.setMaximum(true);
+        } catch(PropertyVetoException ex){
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_pagosRealizadosMenuActionPerformed
 
     /**
      * @param args the command line arguments
