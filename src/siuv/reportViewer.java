@@ -5,11 +5,14 @@
  */
 package siuv;
 
+import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import javax.swing.*;
 import java.awt.*;
 import java.sql.*;
 import java.io.*;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.*;
@@ -21,21 +24,34 @@ import net.sf.jasperreports.view.*;
  */
 public class reportViewer extends javax.swing.JInternalFrame {
 
+    Connection conn;
+    MysqlDataSource ds = new MysqlDataSource();
+    
     /**
      * Creates new form reportViewer
+     * @param filename
+     * @param parametro
      */
-    public reportViewer(String filename, HashMap parametro) {
-        super("Ver reporte");
+    public reportViewer(String filename, HashMap parametro){
+        super("Reportes");
         initComponents();
+        ds.setUser("root");
+        ds.setPassword("1234");
+        ds.setDatabaseName("siuv");
+        ds.setServerName("127.0.0.1");
         try{
-        JasperPrint print = JasperFillManager.fillReport(filename, parametro);
-        JRViewer viewer = new JRViewer(print);
+            conn = ds.getConnection();
+            JasperPrint print = JasperFillManager.fillReport(filename, parametro, conn);
+            JRViewer viewer = new JRViewer(print);
         
-        Container c = getContentPane();
-        c.add(viewer);
+            Container c = getContentPane();
+            c.setLayout(new BorderLayout());
+            c.add(viewer);
         }
-        catch(Exception ex){
-            ex.printStackTrace();
+        catch(JRException ex){
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(reportViewer.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -49,6 +65,8 @@ public class reportViewer extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         setClosable(true);
+        setMaximizable(true);
+        setResizable(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -58,7 +76,7 @@ public class reportViewer extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 333, Short.MAX_VALUE)
+            .addGap(0, 341, Short.MAX_VALUE)
         );
 
         pack();

@@ -4,7 +4,10 @@
  */
 package CPC;
 
+import siuv.reportViewer;
 import java.awt.Dimension;
+import java.beans.PropertyVetoException;
+import java.util.HashMap;
 
 /**
  *
@@ -87,6 +90,11 @@ public class CPCInicio extends javax.swing.JFrame {
         menuReportes.add(pagosRealizadosMenu);
 
         pagosPendientesMenu.setText("Pagos pendientes");
+        pagosPendientesMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pagosPendientesMenuActionPerformed(evt);
+            }
+        });
         menuReportes.add(pagosPendientesMenu);
         menuReportes.add(jSeparator2);
 
@@ -146,6 +154,20 @@ public class CPCInicio extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_salirMenuActionPerformed
+
+    private void pagosPendientesMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pagosPendientesMenuActionPerformed
+        // TODO add your handling code here:
+        HashMap param = new HashMap();
+        param.put("id", new Integer(6));
+        reportViewer reporte = new reportViewer("./reportes/rptPagoAbono.jasper", param);
+        CPCInicio.desktopPane.add(reporte, new Integer(20));
+        reporte.setVisible(true);
+            try{
+                reporte.setMaximum(true);
+            } catch(PropertyVetoException ex){
+                ex.printStackTrace();
+            }
+    }//GEN-LAST:event_pagosPendientesMenuActionPerformed
 
     /**
      * @param args the command line arguments

@@ -4,12 +4,17 @@
  */
 package CPC;
 
+import siuv.reportViewer;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
+import java.beans.PropertyVetoException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -128,6 +133,11 @@ public class cobroUnico extends javax.swing.JInternalFrame {
         });
 
         btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -215,9 +225,17 @@ public class cobroUnico extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
-        // TODO add your handling code here:
-        siuv.reportViewer reporte = new siuv.reportViewer("", null);
+        HashMap param = new HashMap();
+        param.put("id", new Integer(6));
+        reportViewer reporte = new reportViewer("./reportes/rptPagoAbono.jasper", param);
+        reporte.setVisible(true);
+        CPCInicio.desktopPane.add(reporte, new Integer(20));
     }//GEN-LAST:event_btnPagarActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPagar;
