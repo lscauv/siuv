@@ -125,6 +125,11 @@ public class JFrameInicio extends javax.swing.JFrame {
         jButton4.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Inventarios/Images/out1.png"))); // NOI18N
         jButton4.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Inventarios/Images/info2.png"))); // NOI18N
         jButton6.setText("Información");
@@ -281,6 +286,11 @@ public class JFrameInicio extends javax.swing.JFrame {
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(null, "Función EXCEDENTES Y FALTANTES, NO disponible.");
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
