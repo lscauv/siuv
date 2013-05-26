@@ -21,6 +21,7 @@ public class CPCInicio extends javax.swing.JFrame {
     public CPCInicio() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
+        desktopPane.setBorder(new ImagenFondo());
     }
 
     /**
