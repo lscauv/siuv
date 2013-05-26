@@ -117,10 +117,10 @@ public class CPCLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        // TODO add your handling code here:
+        // Esto es un ejemplo. Tanto el usuario como la contraseña debe salir de la base de datos.
         if ("cpc1".equals(txtUsuario.getText())){
             if ("admin".equals(txtContrasena.getText())){
-                CPCInicio inicio = new CPCInicio();
+                CPCInicio inicio = new CPCInicio(true);
                 inicio.setVisible(true);
                 this.dispose();
             } else{

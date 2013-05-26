@@ -6,6 +6,7 @@ package CPC;
 
 import siuv.reportViewer;
 import java.awt.Dimension;
+import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.beans.PropertyVetoException;
 import java.util.HashMap;
 
@@ -17,11 +18,16 @@ public class CPCInicio extends javax.swing.JFrame {
 
     /**
      * Creates new form CPCInicio
+     * @param logged_in
      */
-    public CPCInicio() {
-        initComponents();
-        this.setExtendedState(MAXIMIZED_BOTH);
-        desktopPane.setBorder(new ImagenFondo());
+    public CPCInicio(boolean logged_in) {
+        if (logged_in){
+            initComponents();
+            this.setExtendedState(MAXIMIZED_BOTH);
+            desktopPane.setBorder(new ImagenFondo());
+        } else {
+            dispose();
+        }
     }
 
     /**
@@ -210,7 +216,7 @@ public class CPCInicio extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new CPCInicio().setVisible(true);
+                new CPCInicio(true).setVisible(true);
             }
         });
     }

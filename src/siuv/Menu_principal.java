@@ -94,9 +94,8 @@ public class Menu_principal extends javax.swing.JFrame {
 
     private void btnCPCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCPCActionPerformed
         // TODO add your handling code here:
-        CPC.CPCInicio cpc = new CPC.CPCInicio();
+        CPC.CPCLogin cpc = new CPC.CPCLogin();
         cpc.setAlwaysOnTop(true);
-        
         cpc.setVisible(true);
     }//GEN-LAST:event_btnCPCActionPerformed
 
