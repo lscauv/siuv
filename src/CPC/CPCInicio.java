@@ -21,12 +21,12 @@ public class CPCInicio extends javax.swing.JFrame {
      * @param logged_in
      */
     public CPCInicio(boolean logged_in) {
-        if (logged_in){
+        if (logged_in != true){
+            dispose();
+        } else {
             initComponents();
             this.setExtendedState(MAXIMIZED_BOTH);
             desktopPane.setBorder(new ImagenFondo());
-        } else {
-            dispose();
         }
     }
 

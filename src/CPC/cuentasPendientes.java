@@ -37,7 +37,7 @@ public class cuentasPendientes extends javax.swing.JInternalFrame {
         try
         {
             conexion = data.getConnection();
-            psExecute = conexion.prepareStatement("SELECT cxc.ID_CC as ID, cxc.ID_RFC as RFC, c.Razon_social as Nombre, cxc.ID_NFacturas as Factura, cxc.Total_venta as Total FROM cuentas_por_cobrar cxc, clientes c WHERE cxc.`Status` = 'Abierto' AND c.ID_RFC = cxc.ID_RFC;");
+            psExecute = conexion.prepareStatement("SELECT cxc.ID_CC as ID, cxc.ID_RFC as RFC, c.Razon_social as Nombre, cxc.ID_NFacturas as Factura, cxc.Total_venta as Pendiente FROM cuentas_por_cobrar cxc, clientes c WHERE cxc.`Status` = 'Abierto' AND c.ID_RFC = cxc.ID_RFC;");
             rs = psExecute.executeQuery();
             siuv.ListTableModel tmodel = siuv.ListTableModel.createModelFromResultSet(rs);
             jTable1.setModel(tmodel);

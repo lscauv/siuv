@@ -55,7 +55,7 @@ public class cobroUnico extends javax.swing.JInternalFrame {
         try
         {
             conexion = data.getConnection();
-            psExecute = conexion.prepareStatement("SELECT v.ID_NFacturas as 'ID', c.Razon_social as 'Nombre', v.ID_Producto as 'ID_Prod', p.Descripcion as 'Producto', v.Cant_producto as 'Cantidad', v.Sub_total_ventas as 'Subtotal', v.IVA, v.Total_venta as 'Total' FROM ventas v, clientes c, producto p WHERE v.ID_NFacturas = '" + fact + "' AND c.ID_RFC = v.ID_RFC LIMIT 1;");
+            psExecute = conexion.prepareStatement("SELECT v.ID_NFacturas as 'ID', c.Razon_social as 'Nombre', v.ID_Producto as 'ID_Prod', p.Descripcion as 'Producto', v.Cant_producto as 'Cantidad', v.Sub_total_ventas as 'Subtotal', v.IVA, v.Total_venta as 'Total', cxc.Total_venta as 'Pendiente' FROM ventas v, clientes c, producto p, cuentas_por_cobrar cxc WHERE v.ID_NFacturas = " + fact + " AND c.ID_RFC = v.ID_RFC LIMIT 1;;");
             rs = psExecute.executeQuery();
             while(rs.next()){
                 txtFactura.setText(rs.getString("ID"));
@@ -65,6 +65,36 @@ public class cobroUnico extends javax.swing.JInternalFrame {
                 txtSubtotal.setText(rs.getString("Subtotal"));
                 txtIVA.setText(rs.getString("IVA"));
                 txtTotal.setText(rs.getString("Total"));
+                txtPendiente.setText(rs.getString("Pendiente"));
+            }
+            
+        } catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }
+    
+    private void conseguirFactura2(String fact){
+        data.setUser("root");
+        data.setPassword("1234");
+        data.setDatabaseName("siuv");
+        data.setServerName("127.0.0.1");
+        
+        try
+        {
+            conexion = data.getConnection();
+            psExecute = conexion.prepareStatement("SELECT v.ID_NFacturas as 'ID', c.Razon_social as 'Nombre', v.ID_Producto as 'ID_Prod', p.Descripcion as 'Producto', v.Cant_producto as 'Cantidad', v.Sub_total_ventas as 'Subtotal', v.IVA, v.Total_venta as 'Total', cxc.Total_venta as 'Pendiente', cxc.ID_CC FROM ventas v, clientes c, producto p, cuentas_por_cobrar cxc WHERE v.ID_NFacturas = " +  fact + " AND c.ID_RFC = v.ID_RFC AND cxc.ID_NFacturas = v.ID_NFacturas LIMIT 1;");
+            rs = psExecute.executeQuery();
+            while(rs.next()){
+                txtFactura.setText(rs.getString("ID"));
+                txtCliente.setText(rs.getString("Nombre"));
+                txtProducto.setText("ID: " + rs.getString("ID_Prod") + " Producto: " + rs.getString("Producto"));
+                txtCantidad.setText(rs.getString("Cantidad"));
+                txtSubtotal.setText(rs.getString("Subtotal"));
+                txtIVA.setText(rs.getString("IVA"));
+                txtTotal.setText(rs.getString("Total"));
+                txtPendiente.setText(rs.getString("Pendiente"));
+                txtCxc.setText(rs.getString("ID_CC"));
             }
             
         } catch (SQLException ex)
@@ -118,6 +148,12 @@ public class cobroUnico extends javax.swing.JInternalFrame {
         jLabel1.setText("Factura No.");
 
         jLabel2.setText("Cliente");
+
+        txtFactura.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtFacturaFocusLost(evt);
+            }
+        });
 
         jLabel3.setText("Producto");
 
@@ -214,12 +250,13 @@ public class cobroUnico extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtFactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel10)
-                        .addComponent(txtCxc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtCxc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(txtFactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -233,19 +270,21 @@ public class cobroUnico extends javax.swing.JInternalFrame {
                     .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel9)
-                        .addComponent(txtPendiente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtPendiente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5)
+                        .addComponent(txtSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtIVA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel8)
-                        .addComponent(txtCantidadPagar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtCantidadPagar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel6)
+                        .addComponent(txtIVA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -254,7 +293,7 @@ public class cobroUnico extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPagar)
                     .addComponent(btnSalir))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
@@ -268,6 +307,11 @@ public class cobroUnico extends javax.swing.JInternalFrame {
         int pendiente = Integer.parseInt(txtPendiente.getText());
         int pagado = Integer.parseInt(txtCantidadPagar.getText());
         id = ejecutar.Insertar("abonos","NULL," + txtCxc.getText() + ",'" + sdf.format(dt) + "','" + sdf.format(dt) + "','" + sdf.format(dt) + "'," + pendiente +  "," + new Integer(pendiente - pagado));
+        if ((pendiente - pagado) == 0){
+            ejecutar.Actualizar("cuentas_por_cobrar", "Total_venta='" + new Integer(pendiente - pagado) + "', Status = 'Cerrado'", "ID_CC='" + txtCxc.getText() + "'" );
+        } else {
+            ejecutar.Actualizar("cuentas_por_cobrar", "Total_venta='" + new Integer(pendiente - pagado) + "'", "ID_CC='" + txtCxc.getText() + "'" );
+        }
         CargarReporte(id);
     }//GEN-LAST:event_btnPagarActionPerformed
 
@@ -288,6 +332,11 @@ public class cobroUnico extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void txtFacturaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFacturaFocusLost
+        // TODO add your handling code here:
+        conseguirFactura2(txtFactura.getText());
+    }//GEN-LAST:event_txtFacturaFocusLost
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPagar;
