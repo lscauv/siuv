@@ -39,7 +39,7 @@ FROM
 	<columnHeader>
 		<band height="61" splitType="Stretch">
 			<staticText>
-				<reportElement uuid="787cd6ce-e6b7-42ca-b5aa-5ad1439ddd4d" x="19" y="41" width="100" height="20"/>
+				<reportElement uuid="787cd6ce-e6b7-42ca-b5aa-5ad1439ddd4d" x="1" y="41" width="81" height="20"/>
 				<box leftPadding="2" rightPadding="2">
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -53,7 +53,7 @@ FROM
 				<text><![CDATA[ID]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="2a5ba727-986f-4baa-ba6c-08759e5de065" x="119" y="41" width="119" height="20"/>
+				<reportElement uuid="2a5ba727-986f-4baa-ba6c-08759e5de065" x="82" y="41" width="107" height="20"/>
 				<box leftPadding="2" rightPadding="2">
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -67,7 +67,7 @@ FROM
 				<text><![CDATA[Cuenta por cobrar]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="41a06189-6e47-4228-bfb1-bf6162f04bad" x="238" y="41" width="155" height="20"/>
+				<reportElement uuid="41a06189-6e47-4228-bfb1-bf6162f04bad" x="189" y="41" width="155" height="20"/>
 				<box leftPadding="2" rightPadding="2">
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -81,7 +81,7 @@ FROM
 				<text><![CDATA[Fecha de pago]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="144c8131-b9f3-481f-8791-bbbe0a858f79" x="393" y="41" width="148" height="20"/>
+				<reportElement uuid="144c8131-b9f3-481f-8791-bbbe0a858f79" x="441" y="41" width="114" height="20"/>
 				<box leftPadding="2" rightPadding="2">
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -94,12 +94,26 @@ FROM
 				</textElement>
 				<text><![CDATA[Saldo pendiente]]></text>
 			</staticText>
+			<staticText>
+				<reportElement uuid="d4733d74-fdbe-4807-a3d5-9765978f6d60" x="344" y="41" width="97" height="20"/>
+				<box leftPadding="1" rightPadding="1">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="Segoe UI" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Saldo abonado]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="21" splitType="Stretch">
 			<textField>
-				<reportElement uuid="923612b4-eb89-4129-8d07-d8fa1586331a" x="19" y="0" width="100" height="20"/>
+				<reportElement uuid="923612b4-eb89-4129-8d07-d8fa1586331a" x="1" y="0" width="81" height="20"/>
 				<box leftPadding="2" rightPadding="2">
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -113,7 +127,7 @@ FROM
 				<textFieldExpression><![CDATA[$F{ID_Abonos}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="93287b73-6f1c-4cc5-a8c9-a116ef9c34de" x="119" y="0" width="119" height="20"/>
+				<reportElement uuid="93287b73-6f1c-4cc5-a8c9-a116ef9c34de" x="82" y="0" width="107" height="20"/>
 				<box leftPadding="2" rightPadding="2">
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -127,7 +141,7 @@ FROM
 				<textFieldExpression><![CDATA[$F{ID_CPC}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement uuid="9ac8eb35-3d54-472e-9280-4e0d9a30401f" x="238" y="0" width="155" height="20"/>
+				<reportElement uuid="9ac8eb35-3d54-472e-9280-4e0d9a30401f" x="189" y="0" width="155" height="20"/>
 				<box leftPadding="2" rightPadding="2">
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -141,7 +155,7 @@ FROM
 				<textFieldExpression><![CDATA[$F{Fecha_vencimiento}]]></textFieldExpression>
 			</textField>
 			<textField pattern="¤ #,##0.00">
-				<reportElement uuid="7373d949-4e1e-45da-868f-06cac913c505" x="393" y="0" width="148" height="20"/>
+				<reportElement uuid="7373d949-4e1e-45da-868f-06cac913c505" x="441" y="0" width="114" height="20"/>
 				<box leftPadding="2" rightPadding="2">
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -153,6 +167,20 @@ FROM
 					<font fontName="Segoe UI" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Saldo_final}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="ec0ad3c8-08b1-42ea-bf1d-15d095da2525" x="344" y="0" width="97" height="20"/>
+				<box leftPadding="1">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="Segoe UI" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Integer($F{Saldo_inicial}.intValue() - $F{Saldo_final}.intValue())]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
