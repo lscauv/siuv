@@ -67,13 +67,6 @@
                 <Property name="text" type="java.lang.String" value="Reporte de pagos por per&#xed;odo"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator3">
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="expedientesMenu">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Expedientes asignados"/>
-              </Properties>
-            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="menuHerramientas">

@@ -52,8 +52,6 @@ public class CPCInicio extends javax.swing.JFrame {
         pagosPendientesMenu = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         reportePagosPeriodoMenu = new javax.swing.JMenuItem();
-        jSeparator3 = new javax.swing.JPopupMenu.Separator();
-        expedientesMenu = new javax.swing.JMenuItem();
         menuHerramientas = new javax.swing.JMenu();
         opcionesMenu = new javax.swing.JMenuItem();
 
@@ -112,10 +110,6 @@ public class CPCInicio extends javax.swing.JFrame {
 
         reportePagosPeriodoMenu.setText("Reporte de pagos por período");
         menuReportes.add(reportePagosPeriodoMenu);
-        menuReportes.add(jSeparator3);
-
-        expedientesMenu.setText("Expedientes asignados");
-        menuReportes.add(expedientesMenu);
 
         menuBar.add(menuReportes);
 
@@ -224,10 +218,8 @@ public class CPCInicio extends javax.swing.JFrame {
     private javax.swing.JMenuItem cobrosMenu;
     private javax.swing.JMenuItem cuentasPendientesMenu;
     public static javax.swing.JDesktopPane desktopPane;
-    private javax.swing.JMenuItem expedientesMenu;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
-    private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu menuCuentas;

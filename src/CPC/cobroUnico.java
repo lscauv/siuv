@@ -307,7 +307,7 @@ public class cobroUnico extends javax.swing.JInternalFrame {
         int pendiente = Integer.parseInt(txtPendiente.getText());
         int pagado = Integer.parseInt(txtCantidadPagar.getText());
         id = ejecutar.Insertar("abonos","NULL," + txtCxc.getText() + ",'" + sdf.format(dt) + "','" + sdf.format(dt) + "','" + sdf.format(dt) + "'," + pendiente +  "," + new Integer(pendiente - pagado));
-        if ((pendiente - pagado) == 0){
+        if (pendiente - pagado == 0){
             ejecutar.Actualizar("cuentas_por_cobrar", "Total_venta='" + new Integer(pendiente - pagado) + "', Status = 'Cerrado'", "ID_CC='" + txtCxc.getText() + "'" );
         } else {
             ejecutar.Actualizar("cuentas_por_cobrar", "Total_venta='" + new Integer(pendiente - pagado) + "'", "ID_CC='" + txtCxc.getText() + "'" );
