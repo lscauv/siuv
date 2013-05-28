@@ -512,11 +512,13 @@ CREATE TABLE IF NOT EXISTS `ventas` (
   `Banco` varchar(20) DEFAULT NULL,
   `ID_Producto` int(11) DEFAULT NULL,
   `ID_RFC` varchar(20) DEFAULT NULL,
+  `ID_CC` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID_NFacturas`),
   KEY `ID_Producto` (`ID_Producto`),
   KEY `ID_RFC` (`ID_RFC`),
   CONSTRAINT `ventas_ibfk_1` FOREIGN KEY (`ID_Producto`) REFERENCES `producto` (`ID_Producto`),
   CONSTRAINT `ventas_ibfk_2` FOREIGN KEY (`ID_RFC`) REFERENCES `clientes` (`ID_RFC`)
+  CONSTRAINT `ventas_ibfk_3` FOREIGN KEY (`ID_CC`)  REFERENCES `cuentas_por_cobrar`(`ID_CC`),
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Dumping data for table siuv.ventas: ~0 rows (approximately)
