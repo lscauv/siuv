@@ -294,7 +294,7 @@ public class Acreedor extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(10, 10, 10))
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(Localidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -343,7 +343,7 @@ public class Acreedor extends javax.swing.JInternalFrame {
                 .addGap(51, 51, 51))
         );
 
-        pack();
+        setBounds(0, 0, 969, 502);
     }// </editor-fold>//GEN-END:initComponents
 
     private void Nom_acreedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Nom_acreedorActionPerformed

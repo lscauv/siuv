@@ -37,7 +37,7 @@ public class NuevaVenta extends javax.swing.JFrame {
         this.psExecute = null;
         initComponents();
         data.setUser("root");
-        data.setPassword("1234");
+        data.setPassword("uv");
         data.setDatabaseName("siuv");
         data.setServerName("127.0.0.1");
         lFecha.setText(fechaActual());
@@ -595,10 +595,10 @@ public class NuevaVenta extends javax.swing.JFrame {
         nFactura.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 nFacturaAncestorAdded(evt);
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
 
@@ -609,12 +609,12 @@ public class NuevaVenta extends javax.swing.JFrame {
 
         comboProducto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ID", "Nombre" }));
         comboProducto.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
-            }
             public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
                 comboProductoPopupMenuWillBecomeInvisible(evt);
             }
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
         });
         comboProducto.addActionListener(new java.awt.event.ActionListener() {
@@ -892,6 +892,7 @@ public class NuevaVenta extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened

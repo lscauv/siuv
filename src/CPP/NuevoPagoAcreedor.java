@@ -374,7 +374,7 @@ public class NuevoPagoAcreedor extends javax.swing.JInternalFrame {
         getContentPane().add(lblNombre);
         lblNombre.setBounds(110, 10, 190, 40);
 
-        pack();
+        setBounds(0, 0, 982, 530);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtLocalidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLocalidadActionPerformed

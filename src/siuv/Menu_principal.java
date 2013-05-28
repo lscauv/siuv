@@ -26,82 +26,140 @@ public class Menu_principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnCPC = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        btnCPP = new javax.swing.JButton();
         btnClientes = new javax.swing.JButton();
-        btnInventarios = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        btnInven = new javax.swing.JButton();
+        btnCP = new javax.swing.JButton();
+        btnVent = new javax.swing.JButton();
         btnProveedores = new javax.swing.JButton();
-        btnVentas = new javax.swing.JButton();
+        btnCC = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(null);
 
-        btnCPC.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnCPC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/CLI1.png"))); // NOI18N
-        btnCPC.addActionListener(new java.awt.event.ActionListener() {
+        btnClientes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/CLI1.png"))); // NOI18N
+        btnClientes.setOpaque(false);
+        btnClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCPCActionPerformed(evt);
+                btnClientesActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCPC);
-        btnCPC.setBounds(100, 140, 151, 123);
+        getContentPane().add(btnClientes);
+        btnClientes.setBounds(110, 140, 180, 140);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("SIUV - Sistema de Apoyo de Decisiones");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(290, 50, 332, 25);
+        jLabel1.setBounds(190, 50, 460, 40);
 
-        btnCPP.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnCPP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/INV1.png"))); // NOI18N
-        btnCPP.addActionListener(new java.awt.event.ActionListener() {
+        btnInven.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnInven.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/INV1.png"))); // NOI18N
+        btnInven.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCPPActionPerformed(evt);
+                btnInvenActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCPP);
-        btnCPP.setBounds(100, 320, 151, 123);
+        getContentPane().add(btnInven);
+        btnInven.setBounds(110, 320, 180, 140);
 
-        btnClientes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/CPP1.png"))); // NOI18N
-        getContentPane().add(btnClientes);
-        btnClientes.setBounds(360, 140, 151, 123);
+        btnCP.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnCP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/CPP1.png"))); // NOI18N
+        btnCP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCPActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCP);
+        btnCP.setBounds(320, 140, 180, 140);
 
-        btnInventarios.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnInventarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/VEN1.png"))); // NOI18N
-        getContentPane().add(btnInventarios);
-        btnInventarios.setBounds(620, 140, 151, 123);
+        btnVent.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnVent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/VEN1.png"))); // NOI18N
+        btnVent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVentActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnVent);
+        btnVent.setBounds(530, 140, 180, 140);
 
         btnProveedores.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/PRO1.png"))); // NOI18N
+        btnProveedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProveedoresActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnProveedores);
-        btnProveedores.setBounds(620, 320, 151, 121);
+        btnProveedores.setBounds(530, 320, 180, 140);
 
-        btnVentas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/CPC1.png"))); // NOI18N
-        getContentPane().add(btnVentas);
-        btnVentas.setBounds(350, 320, 151, 123);
+        btnCC.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnCC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/CPC1.png"))); // NOI18N
+        btnCC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCCActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCC);
+        btnCC.setBounds(320, 320, 180, 140);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondoGris.png"))); // NOI18N
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(0, 0, 860, 500);
+        jLabel2.setBounds(0, 0, 820, 500);
 
-        setBounds(0, 0, 874, 535);
+        setSize(new java.awt.Dimension(831, 535));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCPCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCPCActionPerformed
+    private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
+        // TODO add your handling code here:
+        Clientes.Clientes client = new Clientes.Clientes();
+        client.setAlwaysOnTop(true);
+        client.setVisible(true);
+    }//GEN-LAST:event_btnClientesActionPerformed
+
+    private void btnInvenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInvenActionPerformed
+        // TODO add your handling code here:
+         Inventarios.JFrameInicio inven = new Inventarios.JFrameInicio();
+        inven.setAlwaysOnTop(true);
+        inven.setVisible(true);
+    }//GEN-LAST:event_btnInvenActionPerformed
+
+    private void btnCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCPActionPerformed
+        // TODO add your handling code here:
+          CPP.CPPInicio cuentasP = new CPP.CPPInicio();
+        cuentasP.setAlwaysOnTop(true);
+        cuentasP.setVisible(true);
+        
+    }//GEN-LAST:event_btnCPActionPerformed
+
+    private void btnVentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentActionPerformed
+        // TODO add your handling code here:
+        
+        Ventas.PrincipalVentas vent = new Ventas.PrincipalVentas();
+        vent.setAlwaysOnTop(true);
+        vent.setVisible(true);
+    }//GEN-LAST:event_btnVentActionPerformed
+
+    private void btnCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCCActionPerformed
         // TODO add your handling code here:
         CPC.CPCLogin cpc = new CPC.CPCLogin();
         cpc.setAlwaysOnTop(true);
         cpc.setVisible(true);
-    }//GEN-LAST:event_btnCPCActionPerformed
+        
+    }//GEN-LAST:event_btnCCActionPerformed
 
-    private void btnCPPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCPPActionPerformed
+    private void btnProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedoresActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnCPPActionPerformed
+        
+         Proveedores.Menu_proveedores provee = new Proveedores.Menu_proveedores();
+        provee.setAlwaysOnTop(true);
+        provee.setVisible(true);
+        
+    }//GEN-LAST:event_btnProveedoresActionPerformed
 
     /**
      * @param args the command line arguments
@@ -138,12 +196,12 @@ public class Menu_principal extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCPC;
-    private javax.swing.JButton btnCPP;
+    private javax.swing.JButton btnCC;
+    private javax.swing.JButton btnCP;
     private javax.swing.JButton btnClientes;
-    private javax.swing.JButton btnInventarios;
+    private javax.swing.JButton btnInven;
     private javax.swing.JButton btnProveedores;
-    private javax.swing.JButton btnVentas;
+    private javax.swing.JButton btnVent;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables

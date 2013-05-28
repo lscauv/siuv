@@ -32,7 +32,7 @@ public class AltaP extends javax.swing.JFrame {
         this.psExecute = null;
         initComponents();
         data.setUser("root");
-        data.setPassword("1234");
+        data.setPassword("uv");
         data.setDatabaseName("siuv");
         data.setServerName("127.0.0.1");
         

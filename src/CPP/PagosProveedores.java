@@ -168,7 +168,6 @@ public class PagosProveedores extends javax.swing.JInternalFrame {
         setForeground(java.awt.Color.white);
         setIconifiable(true);
         setMaximizable(true);
-        setResizable(true);
         setTitle("Consulta proveedores");
         setFocusTraversalPolicyProvider(true);
         setInheritsPopupMenu(true);
@@ -481,7 +480,7 @@ public class PagosProveedores extends javax.swing.JInternalFrame {
         getContentPane().add(jScrollPane2);
         jScrollPane2.setBounds(10, 430, 920, 220);
 
-        pack();
+        setBounds(0, 0, 962, 683);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

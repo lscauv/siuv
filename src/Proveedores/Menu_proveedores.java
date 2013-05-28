@@ -92,6 +92,11 @@ public class Menu_proveedores extends javax.swing.JFrame {
         });
 
         BotonMenuP.setText("Volver al menu principal");
+        BotonMenuP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonMenuPActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Euphemia", 1, 36)); // NOI18N
         jLabel1.setText("Proveedores");
@@ -247,6 +252,11 @@ public class Menu_proveedores extends javax.swing.JFrame {
         FacturasRec fact = new FacturasRec();
         fact.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void BotonMenuPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonMenuPActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_BotonMenuPActionPerformed
 
     /**
      * @param args the command line arguments

@@ -157,7 +157,6 @@ public class PagosAcreedores extends javax.swing.JInternalFrame {
         setForeground(java.awt.Color.white);
         setIconifiable(true);
         setMaximizable(true);
-        setResizable(true);
         setTitle("Consulta acreedores");
         setFocusTraversalPolicyProvider(true);
         setInheritsPopupMenu(true);
@@ -463,7 +462,7 @@ public class PagosAcreedores extends javax.swing.JInternalFrame {
         getContentPane().add(jScrollPane2);
         jScrollPane2.setBounds(20, 500, 1140, 220);
 
-        pack();
+        setBounds(0, 0, 1217, 841);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtLocalidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLocalidadActionPerformed

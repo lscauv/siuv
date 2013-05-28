@@ -75,7 +75,6 @@ public class Pagos extends javax.swing.JInternalFrame {
         setForeground(java.awt.Color.white);
         setIconifiable(true);
         setMaximizable(true);
-        setResizable(true);
         setTitle("Pagos Proveedores");
         setFocusTraversalPolicyProvider(true);
         setInheritsPopupMenu(true);
@@ -241,7 +240,7 @@ public class Pagos extends javax.swing.JInternalFrame {
         getContentPane().add(ID_Facturas_rec);
         ID_Facturas_rec.setBounds(460, 280, 140, 30);
 
-        pack();
+        setBounds(0, 0, 640, 450);
     }// </editor-fold>//GEN-END:initComponents
 
     private void ID_PagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ID_PagoActionPerformed

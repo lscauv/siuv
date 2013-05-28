@@ -46,7 +46,7 @@ public class cobroUnico extends javax.swing.JInternalFrame {
     
     private void conseguirFactura(String fact){
         data.setUser("root");
-        data.setPassword("1234");
+        data.setPassword("uv");
         data.setDatabaseName("siuv");
         data.setServerName("127.0.0.1");
         
@@ -74,7 +74,7 @@ public class cobroUnico extends javax.swing.JInternalFrame {
     
     private void conseguirFactura2(String fact){
         data.setUser("root");
-        data.setPassword("1234");
+        data.setPassword("uv");
         data.setDatabaseName("siuv");
         data.setServerName("127.0.0.1");
         
@@ -291,7 +291,7 @@ public class cobroUnico extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPagar)
                     .addComponent(btnSalir))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         pack();

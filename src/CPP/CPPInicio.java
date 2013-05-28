@@ -273,7 +273,7 @@ public class CPPInicio extends javax.swing.JFrame {
 
         setJMenuBar(menuBar);
 
-        pack();
+        setBounds(0, 0, 1386, 793);
     }// </editor-fold>//GEN-END:initComponents
 
     private void Pagos2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Pagos2ActionPerformed

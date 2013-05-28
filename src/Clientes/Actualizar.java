@@ -52,7 +52,7 @@ public class Actualizar extends javax.swing.JFrame {
         try
         {
            Class.forName("com.mysql.jdbc.Driver");
-           conect = DriverManager.getConnection("jdbc:mysql://localhost/siuv","root","");
+           conect = DriverManager.getConnection("jdbc:mysql://localhost/siuv","root","uv");
             
             stmt = conect.createStatement();
             

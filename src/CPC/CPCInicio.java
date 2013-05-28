@@ -130,6 +130,7 @@ public class CPCInicio extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void cuentasPendientesMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cuentasPendientesMenuActionPerformed
