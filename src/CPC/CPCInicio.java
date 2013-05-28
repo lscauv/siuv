@@ -109,6 +109,11 @@ public class CPCInicio extends javax.swing.JFrame {
         menuReportes.add(jSeparator2);
 
         reportePagosPeriodoMenu.setText("Reporte de pagos por período");
+        reportePagosPeriodoMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reportePagosPeriodoMenuActionPerformed(evt);
+            }
+        });
         menuReportes.add(reportePagosPeriodoMenu);
 
         menuBar.add(menuReportes);
@@ -163,7 +168,15 @@ public class CPCInicio extends javax.swing.JFrame {
 
     private void pagosPendientesMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pagosPendientesMenuActionPerformed
         // TODO add your handling code here:
-        
+        HashMap param = new HashMap();
+        reportViewer reporte = new reportViewer("./reportes/rptPagosPendientes.jasper", param);
+        CPCInicio.desktopPane.add(reporte, new Integer(20));
+        reporte.setVisible(true);
+        try{
+            reporte.setMaximum(true);
+        } catch(PropertyVetoException ex){
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_pagosPendientesMenuActionPerformed
 
     private void pagosRealizadosMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pagosRealizadosMenuActionPerformed
@@ -178,6 +191,16 @@ public class CPCInicio extends javax.swing.JFrame {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_pagosRealizadosMenuActionPerformed
+
+    private void reportePagosPeriodoMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportePagosPeriodoMenuActionPerformed
+        // TODO add your handling code here:
+        selFecha fecha = new selFecha();
+        fecha.setVisible(true);
+        Dimension dim = desktopPane.getSize();
+        Dimension winDim = fecha.getSize();
+        fecha.setLocation((dim.width - winDim.width) / 2, (dim.height - winDim.height) / 2);
+        desktopPane.add(fecha, javax.swing.JLayeredPane.DEFAULT_LAYER);
+    }//GEN-LAST:event_reportePagosPeriodoMenuActionPerformed
 
     /**
      * @param args the command line arguments
