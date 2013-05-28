@@ -72,18 +72,6 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="menuHerramientas">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Herramientas"/>
-          </Properties>
-          <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="opcionesMenu">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Opciones"/>
-              </Properties>
-            </MenuItem>
-          </SubComponents>
-        </Menu>
       </SubComponents>
     </Menu>
   </NonVisualComponents>

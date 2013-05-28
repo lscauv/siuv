@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptPagosPeriodo" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0e2ce73b-97d2-45e1-a064-4b900c36d66c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fechaI" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fechaF" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT a.ID_Abonos, a.ID_CPC, c.ID_NFacturas, c.ID_RFC, cli.Razon_social, a.Saldo_inicial, a.Saldo_final FROM abonos a JOIN cuentas_por_cobrar c ON a.ID_CPC = c.ID_CC JOIN clientes cli ON c.ID_RFC = cli.ID_RFC WHERE a.Fecha_termino BETWEEN $P{fechaI} AND $P{fechaF};]]>
+	</queryString>
+	<field name="ID_Abonos" class="java.lang.Long"/>
+	<field name="ID_CPC" class="java.lang.Long"/>
+	<field name="ID_NFacturas" class="java.lang.Integer"/>
+	<field name="ID_RFC" class="java.lang.String"/>
+	<field name="Razon_social" class="java.lang.String"/>
+	<field name="Saldo_inicial" class="java.lang.Float"/>
+	<field name="Saldo_final" class="java.lang.Float"/>
+	<variable name="variable1" class="java.lang.Float" calculation="Sum">
+		<variableExpression><![CDATA[new Integer($F{Saldo_inicial}.intValue() - $F{Saldo_final}.intValue())]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="37" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="8bf063ab-4c28-4813-b886-f585752cdf6a" x="119" y="11" width="304" height="23"/>
+				<textElement textAlignment="Center">
+					<font fontName="Segoe UI" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Lista de abonos al sistema]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="60" splitType="Stretch">
+			<textField>
+				<reportElement uuid="364e5b06-b894-4e30-9fb9-c7f29c561d13" x="0" y="15" width="177" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["Fecha inicial: "+$P{fechaI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="afd477aa-39a0-47ee-8fa8-4b4856fb2529" x="0" y="35" width="177" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["Fecha final: "+$P{fechaF}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="53336012-7c94-4bac-b55a-036fd62173ca" x="0" y="41" width="88" height="20"/>
+				<box leftPadding="2" rightPadding="1">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="Segoe UI" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Abono no.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7d071ca2-8792-47dd-b87e-71571fb321a8" x="88" y="41" width="89" height="20"/>
+				<box leftPadding="2" rightPadding="1">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="Segoe UI" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cuenta no.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="155fdac6-f98e-4f3a-8104-97bfb412dff7" x="177" y="41" width="100" height="20"/>
+				<box leftPadding="2" rightPadding="1">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="Segoe UI" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Factura]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ba82fcc7-9f9b-46a8-b129-494d5befa9f7" x="277" y="41" width="100" height="20"/>
+				<box leftPadding="2" rightPadding="1">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="Segoe UI" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RFC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="25de3d0b-3d96-4d7f-a130-5354dfc015b7" x="377" y="41" width="100" height="20"/>
+				<box leftPadding="2" rightPadding="1">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="Segoe UI" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b4c3aee0-84c1-4400-a11b-ace15ed9d0d0" x="477" y="41" width="78" height="20"/>
+				<box leftPadding="2" rightPadding="1">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="Segoe UI" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Abonado]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement uuid="864f5d75-1b2f-4faf-aee3-35db4b8f9b4d" x="0" y="0" width="88" height="20"/>
+				<box leftPadding="2" rightPadding="1">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="Segoe UI" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ID_Abonos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="14bb6eba-2baa-408f-a17d-529afc2ba0ee" x="88" y="0" width="89" height="20"/>
+				<box leftPadding="2" rightPadding="1">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="Segoe UI" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ID_CPC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a926d072-e8cb-4428-a5fc-fde5025d02fd" x="177" y="0" width="100" height="20"/>
+				<box leftPadding="2" rightPadding="1">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="Segoe UI" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ID_NFacturas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="33b95d4c-2033-4a2d-a0ca-6ffdd2625835" x="277" y="0" width="100" height="20"/>
+				<box leftPadding="2" rightPadding="1">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="Segoe UI" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ID_RFC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b133d272-5e49-4aa1-b968-065731ed1a24" x="377" y="0" width="100" height="20"/>
+				<box leftPadding="2" rightPadding="1">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="Segoe UI" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Razon_social}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="b935b15b-b4dc-4903-8419-d20a057f4663" x="477" y="0" width="78" height="20"/>
+				<box leftPadding="2" rightPadding="1">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="Segoe UI" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Integer($F{Saldo_inicial}.intValue() - $F{Saldo_final}.intValue())]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="4a2b4f88-54ed-4142-947e-9bbf1b591ddd" x="440" y="0" width="115" height="26"/>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Segoe UI" size="14" isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{variable1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="5cc380b1-df21-4252-ac34-09723398a5f1" x="340" y="0" width="100" height="26"/>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Top">
+					<font fontName="Segoe UI" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total:]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

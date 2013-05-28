@@ -5,7 +5,11 @@
  */
 package CPC;
 
+import java.beans.PropertyVetoException;
 import java.text.DateFormatSymbols;
+import java.util.HashMap;
+import javax.swing.JOptionPane;
+import siuv.reportViewer;
 
 /**
  *
@@ -28,6 +32,20 @@ public class selFecha extends javax.swing.JInternalFrame {
     
     public String getMonth(int month) {
         return new DateFormatSymbols().getMonths()[month-1];
+    }
+    
+    private void CargarReporte(String fechaI, String fechaF){
+        HashMap param = new HashMap();
+        param.put("fechaI", fechaI);
+        param.put("fechaF", fechaF);
+        reportViewer reporte = new reportViewer("./reportes/rptPagosPeriodo.jasper", param);
+        CPCInicio.desktopPane.add(reporte, new Integer(20));
+        reporte.setVisible(true);
+        try{
+            reporte.setMaximum(true);
+        } catch(PropertyVetoException ex){
+            ex.printStackTrace();
+        }
     }
 
     /**
@@ -90,7 +108,10 @@ public class selFecha extends javax.swing.JInternalFrame {
 
     private void btnVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerActionPerformed
         // TODO add your handling code here:
-        
+        //JOptionPane.showConfirmDialog(this, (cmbMes.getSelectedIndex() + 1) + " " + cmbAnno.getSelectedItem().toString());
+        String fechaI = cmbAnno.getSelectedItem().toString() + "-" + (cmbMes.getSelectedIndex() + 1) + "-01";
+        String fechaF = cmbAnno.getSelectedItem().toString() + "-" + (cmbMes.getSelectedIndex() + 2) + "-01";
+        CargarReporte(fechaI, fechaF);
     }//GEN-LAST:event_btnVerActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

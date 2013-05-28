@@ -52,8 +52,6 @@ public class CPCInicio extends javax.swing.JFrame {
         pagosPendientesMenu = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         reportePagosPeriodoMenu = new javax.swing.JMenuItem();
-        menuHerramientas = new javax.swing.JMenu();
-        opcionesMenu = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Módulo de cuentas por cobrar");
@@ -117,13 +115,6 @@ public class CPCInicio extends javax.swing.JFrame {
         menuReportes.add(reportePagosPeriodoMenu);
 
         menuBar.add(menuReportes);
-
-        menuHerramientas.setText("Herramientas");
-
-        opcionesMenu.setText("Opciones");
-        menuHerramientas.add(opcionesMenu);
-
-        menuBar.add(menuHerramientas);
 
         setJMenuBar(menuBar);
 
@@ -246,9 +237,7 @@ public class CPCInicio extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu menuCuentas;
-    private javax.swing.JMenu menuHerramientas;
     private javax.swing.JMenu menuReportes;
-    private javax.swing.JMenuItem opcionesMenu;
     private javax.swing.JMenuItem pagosPendientesMenu;
     private javax.swing.JMenuItem pagosRealizadosMenu;
     private javax.swing.JMenuItem reportePagosPeriodoMenu;
