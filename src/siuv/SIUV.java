@@ -19,7 +19,7 @@ public class SIUV {
         inicio.setResizable(false);
         inicio.pack();
         inicio.setVisible(true);*/
-        Inicio inic = new Inicio();
+        Login inic = new Login();
         inic.setVisible(true);
     }
 }

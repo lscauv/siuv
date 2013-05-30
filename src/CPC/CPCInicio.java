@@ -20,20 +20,12 @@ public class CPCInicio extends javax.swing.JFrame {
      * Creates new form CPCInicio
      * @param logged_in
      */
-    public CPCInicio(boolean logged_in) {
-        if (logged_in != true){
-            dispose();
-        } else {
-            initComponents();
+    public CPCInicio() {
+           initComponents();
             this.setExtendedState(MAXIMIZED_BOTH);
             desktopPane.setBorder(new ImagenFondo());
-        }
+        
     }
-
-    public CPCInicio() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -229,7 +221,7 @@ public class CPCInicio extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new CPCInicio(true).setVisible(true);
+                new CPCInicio().setVisible(true);
             }
         });
     }
