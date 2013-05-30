@@ -4,14 +4,11 @@
  */
 package Ventas;
 
-import java.sql.*;
-import java.awt.print.PrinterException;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
-import java.text.MessageFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 /**
  *
@@ -25,32 +22,8 @@ public class ConsultaVentas extends javax.swing.JFrame {
     Statement stmt;
     MysqlDataSource data = new MysqlDataSource();
     String nombre;
-    
     public ConsultaVentas() {
         initComponents();
-        setLocationRelativeTo(null);
-        setResizable(false);
-        setDefaultCloseOperation(0); 
-        setTitle("Informe General de Ventas");
-        
-        data.setUser("root");
-        data.setPassword("");
-        data.setDatabaseName("siuv");
-        data.setServerName("127.0.0.1");
-        
-        try
-        {
-            conexion = data.getConnection();
-            psExecute = conexion.prepareStatement("SELECT Fecha, ID_NFacturas as Factura, ID_RFC as Cliente, ID_Producto as Producto,Cant_producto as Cantidad, Sub_total_ventas as Subtotal, Total_venta as Total, Tipo_pago, Banco \n" +
-"FROM ventas ");
-            rs = psExecute.executeQuery();
-            siuv.ListTableModel tmodel = siuv.ListTableModel.createModelFromResultSet(rs);
-            tProductoV.setModel(tmodel);
-            
-        } catch (SQLException ex)
-        {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
-        }
     }
 
     /**
@@ -63,36 +36,60 @@ public class ConsultaVentas extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
+        jlbRelacionVentas = new javax.swing.JLabel();
         consulta = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tProductoV = new javax.swing.JTable();
         btnSalir1 = new javax.swing.JButton();
         btnConsultaClientes = new javax.swing.JButton();
         btnImprimir = new javax.swing.JButton();
-        jpnTabla = new javax.swing.JPanel();
-        jlbRelacionVentas = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tProductoV = new javax.swing.JTable();
+        btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jlbRelacionVentas.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jlbRelacionVentas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlbRelacionVentas.setText("Relación general de Ventas ");
+
         consulta.setFont(new java.awt.Font("Adorable", 1, 60)); // NOI18N
         consulta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        consulta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ventas/imagenes/consulta.png"))); // NOI18N
+        consulta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ventas/consulta.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(consulta, javax.swing.GroupLayout.DEFAULT_SIZE, 758, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jlbRelacionVentas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(consulta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(consulta)
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jlbRelacionVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
         );
+
+        tProductoV.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Fecha", "Cliente", "Factura", "Producto", "Descripción", "Precio_Venta", "Venta_Total"
+            }
+        ));
+        jScrollPane2.setViewportView(tProductoV);
 
         btnSalir1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnSalir1.setText("Salir");
@@ -111,52 +108,15 @@ public class ConsultaVentas extends javax.swing.JFrame {
         });
 
         btnImprimir.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnImprimir.setText("Reportes");
-        btnImprimir.addActionListener(new java.awt.event.ActionListener() {
+        btnImprimir.setText("Imprimir");
+
+        btnCancelar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnImprimirActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
             }
         });
-
-        jlbRelacionVentas.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jlbRelacionVentas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlbRelacionVentas.setText("Relación general de Ventas ");
-
-        tProductoV.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(tProductoV);
-
-        javax.swing.GroupLayout jpnTablaLayout = new javax.swing.GroupLayout(jpnTabla);
-        jpnTabla.setLayout(jpnTablaLayout);
-        jpnTablaLayout.setHorizontalGroup(
-            jpnTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnTablaLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jlbRelacionVentas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(27, 27, 27))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnTablaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-        );
-        jpnTablaLayout.setVerticalGroup(
-            jpnTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnTablaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jlbRelacionVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
-        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -167,30 +127,38 @@ public class ConsultaVentas extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2)
+                        .addGap(8, 8, 8))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnConsultaClientes)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSalir1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
-            .addComponent(jpnTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpnTabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSalir1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnConsultaClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnImprimir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnConsultaClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(btnSalir1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir1ActionPerformed
@@ -204,19 +172,9 @@ public class ConsultaVentas extends javax.swing.JFrame {
         vista_clientes.setVisible(true);
     }//GEN-LAST:event_btnConsultaClientesActionPerformed
 
-    private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
-      
-         MessageFormat header = new MessageFormat("Reporte de Ventas");
-        
-        MessageFormat footer = new MessageFormat("Page{0, number, integer}");
-        try {
-          // TODO add your handling code here:
-          tProductoV.print();
-      } catch (PrinterException ex) {
-          Logger.getLogger(ConsultaVentas.class.getName()).log(Level.SEVERE, null, ex);
-      }
-        
-    }//GEN-LAST:event_btnImprimirActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -253,14 +211,14 @@ public class ConsultaVentas extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnConsultaClientes;
     private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnSalir1;
     private javax.swing.JLabel consulta;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel jlbRelacionVentas;
-    private javax.swing.JPanel jpnTabla;
     private javax.swing.JTable tProductoV;
     // End of variables declaration//GEN-END:variables
 }

@@ -37,7 +37,7 @@ public class MysqlExecute {
      */
     public int Insertar(String tabla, String datos){
         ds.setUser("root");
-        ds.setPassword("1234");
+        ds.setPassword("uv");
         ds.setDatabaseName("siuv");
         ds.setServerName("127.0.0.1");
         int id = 0;
