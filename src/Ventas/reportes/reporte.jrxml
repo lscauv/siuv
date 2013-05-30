@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporte" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="327fe20c-431b-4099-90aa-dc8bea493792">
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     *,
+     ventas.`ID_NFacturas` AS ventas_ID_NFacturas,
+     ventas.`Total_venta` AS ventas_Total_venta,
+     ventas.`Tipo_pago` AS ventas_Tipo_pago,
+     ventas.`Banco` AS ventas_Banco,
+     ventas.`Fecha` AS ventas_Fecha,
+     ventas.`ID_RFC` AS ventas_ID_RFC,
+     ventas.`Sub_total_ventas` AS ventas_Sub_total_ventas,
+     ventas.`IVA` AS ventas_IVA
+FROM
+     `ventas` ventas]]>
+	</queryString>
+	<field name="ID_NFacturas" class="java.lang.Integer"/>
+	<field name="Cant_producto" class="java.lang.Integer"/>
+	<field name="Sub_total_ventas" class="java.lang.Float"/>
+	<field name="IVA" class="java.lang.Float"/>
+	<field name="Total_venta" class="java.lang.Float"/>
+	<field name="Tipo_pago" class="java.lang.String"/>
+	<field name="Banco" class="java.lang.String"/>
+	<field name="ID_Producto" class="java.lang.Integer"/>
+	<field name="ID_RFC" class="java.lang.String"/>
+	<field name="Fecha" class="java.sql.Date"/>
+	<field name="ventas_ID_NFacturas" class="java.lang.Integer"/>
+	<field name="ventas_Total_venta" class="java.lang.Float"/>
+	<field name="ventas_Tipo_pago" class="java.lang.String"/>
+	<field name="ventas_Banco" class="java.lang.String"/>
+	<field name="ventas_Fecha" class="java.sql.Date"/>
+	<field name="ventas_ID_RFC" class="java.lang.String"/>
+	<field name="ventas_Sub_total_ventas" class="java.lang.Float"/>
+	<field name="ventas_IVA" class="java.lang.Float"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<image>
+				<reportElement uuid="0d0c7714-3350-41ab-977e-d30bf53b6616" x="275" y="0" width="300" height="64"/>
+				<imageExpression><![CDATA["leaf_banner_violet.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="9ce48ab1-b737-415a-93e2-a72c55330d00" style="Title" x="0" y="13" width="263" height="33"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Leaf Violet Title]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4d9e535b-9e61-4b12-a364-40001a671049" style="SubTitle" x="63" y="46" width="200" height="22"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Leaf Violet SubTitle]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement uuid="37a8e21e-a81d-4523-b45c-48be47e1812f" positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="d43bc14c-e523-4e8e-ab71-d18280fa6574" style="Column header" x="0" y="19" width="30" height="15"/>
+				<textElement/>
+				<text><![CDATA[ID_NFacturas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a07bd40b-683a-4d15-8c72-121bcb52dc32" style="Column header" x="30" y="19" width="30" height="15"/>
+				<textElement/>
+				<text><![CDATA[Cant_producto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4c7ba402-e045-42a6-96a8-ab3941d623d3" style="Column header" x="60" y="19" width="30" height="15"/>
+				<textElement/>
+				<text><![CDATA[Sub_total_ventas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c791b7fb-1383-4dc0-b434-9dd3d6ae9d10" style="Column header" x="90" y="19" width="30" height="15"/>
+				<textElement/>
+				<text><![CDATA[IVA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="73111646-324d-41b7-ad4a-aacd33961961" style="Column header" x="120" y="19" width="30" height="15"/>
+				<textElement/>
+				<text><![CDATA[Total_venta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9e9a72ca-1e7c-4981-a2d9-e3e8ae659457" style="Column header" x="150" y="19" width="30" height="15"/>
+				<textElement/>
+				<text><![CDATA[Tipo_pago]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="374799d1-57c3-4338-88a8-4d2eb84e148d" style="Column header" x="180" y="19" width="30" height="15"/>
+				<textElement/>
+				<text><![CDATA[Banco]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="040ea36e-87e8-46ab-bb1c-25226ebe39d7" style="Column header" x="210" y="19" width="30" height="15"/>
+				<textElement/>
+				<text><![CDATA[ID_Producto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ed35298b-285b-4aef-b45b-5b2060c50b89" style="Column header" x="240" y="19" width="30" height="15"/>
+				<textElement/>
+				<text><![CDATA[ID_RFC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="405784d5-130b-42dc-ae15-4dd755d2614e" style="Column header" x="270" y="19" width="30" height="15"/>
+				<textElement/>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8e1f60c9-bf50-4f83-970b-568bcd645f53" style="Column header" x="300" y="19" width="30" height="15"/>
+				<textElement/>
+				<text><![CDATA[ventas_ID_NFacturas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3143aced-13b0-4255-898d-86c06bcb5ed1" style="Column header" x="330" y="19" width="30" height="15"/>
+				<textElement/>
+				<text><![CDATA[ventas_Total_venta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5a4f20dd-3207-4f48-9613-76fae89ad27a" style="Column header" x="360" y="19" width="30" height="15"/>
+				<textElement/>
+				<text><![CDATA[ventas_Tipo_pago]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8e38bd81-4919-4525-9ecc-9a5a66f97677" style="Column header" x="390" y="19" width="30" height="15"/>
+				<textElement/>
+				<text><![CDATA[ventas_Banco]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="30ea1281-e576-4349-996d-c9a73b0f6e63" style="Column header" x="420" y="19" width="30" height="15"/>
+				<textElement/>
+				<text><![CDATA[ventas_Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="cc2f13c1-8b1e-46f1-a7b5-e30802a47d0b" style="Column header" x="450" y="19" width="30" height="15"/>
+				<textElement/>
+				<text><![CDATA[ventas_ID_RFC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="be184402-24ae-4960-a600-e45a8db0bf27" style="Column header" x="480" y="19" width="30" height="15"/>
+				<textElement/>
+				<text><![CDATA[ventas_Sub_total_ventas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="24cf2269-b744-4a93-9d4a-c57749470ad5" style="Column header" x="510" y="19" width="30" height="15"/>
+				<textElement/>
+				<text><![CDATA[ventas_IVA]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement uuid="4c5332e9-6d21-4e52-adb4-cac968fe051a" positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement uuid="616167bf-c1bc-4723-9ce0-6dff1c027dc8" style="Detail" x="0" y="0" width="30" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ID_NFacturas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="68eb58d5-805d-4c63-b4fb-3901474970cd" style="Detail" x="30" y="0" width="30" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Cant_producto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="bebf917d-ef56-47cd-943a-dd30f32fe2cb" style="Detail" x="60" y="0" width="30" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Sub_total_ventas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="7a6ee966-666a-4ed4-9192-466d6b24c55d" style="Detail" x="90" y="0" width="30" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{IVA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3cc573cf-8067-468b-9044-e71af159de9e" style="Detail" x="120" y="0" width="30" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Total_venta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f4e60bae-ec73-4d0d-b24f-d14df4e920a1" style="Detail" x="150" y="0" width="30" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Tipo_pago}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="114d226f-2dac-4a31-a278-a0416dd9545b" style="Detail" x="180" y="0" width="30" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Banco}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="bbbe7b27-d209-4636-b138-5fa93f08b1c9" style="Detail" x="210" y="0" width="30" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ID_Producto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="5cb7e250-bf4a-4ebf-a9f2-998a12c4beea" style="Detail" x="240" y="0" width="30" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ID_RFC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="6fb71f11-f74c-4b11-ac78-0153c44f3f04" style="Detail" x="270" y="0" width="30" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="abcd2bfe-73d5-4a86-9576-18a2ceafc921" style="Detail" x="300" y="0" width="30" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ventas_ID_NFacturas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="7dfd327f-7598-4e0f-9cff-efe35f645753" style="Detail" x="330" y="0" width="30" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ventas_Total_venta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e67735a8-b0ee-46dd-b721-1fc51a6e6534" style="Detail" x="360" y="0" width="30" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ventas_Tipo_pago}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="bf4c396a-12ee-4079-bfb6-eb9422491e64" style="Detail" x="390" y="0" width="30" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ventas_Banco}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2fea301f-6d0a-48c3-8bce-4b39efe01564" style="Detail" x="420" y="0" width="30" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ventas_Fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a74a8ac8-61d6-439b-9957-14efb3a13ff1" style="Detail" x="450" y="0" width="30" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ventas_ID_RFC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="5f6f99bc-829e-4a94-9c6e-8ceb96559b8d" style="Detail" x="480" y="0" width="30" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ventas_Sub_total_ventas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="5462c918-700b-4558-bd79-2f0bc99e75cd" style="Detail" x="510" y="0" width="30" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ventas_IVA}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement uuid="23b0bea7-bb5e-494d-baa9-a470cbedfee2" positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="30169b40-66f1-4b5b-9d83-bb7482b1450b" style="Column header" x="433" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="cd8ba16f-e17c-4cca-942b-22bf8e25f821" style="Column header" x="513" y="0" width="40" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="6e3e45b7-bba2-45ab-89df-ab546dc3475b" style="Column header" x="0" y="0" width="197" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
