@@ -30,7 +30,7 @@ public class Actualizar extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        loadClient();
+        loadActualizar();
         limpiar();
     }
     
@@ -47,16 +47,16 @@ public class Actualizar extends javax.swing.JFrame {
     
     }
     
-    private void loadClient()
+    private void loadActualizar()
     {
         try
         {
            Class.forName("com.mysql.jdbc.Driver");
-           conect = DriverManager.getConnection("jdbc:mysql://localhost/siuv","root","uv");
+           conect = DriverManager.getConnection("jdbc:mysql://localhost/siuv","root","");
             
             stmt = conect.createStatement();
             
-            ResultSet rs = stmt.executeQuery("SELECT * FROM CLIENTES");
+            ResultSet rs = stmt.executeQuery("SELECT ID_RFC, Actividad_empresarial, Razon_social, Domicilio,  Colonia, Municipio, Codigo_postal,Estado, Email, Num_telefono, Telefono_Movil, Fax, Num_extencion FROM CLIENTES");
             //ResultSet rst = stmt.executeQuery("SELECT Num_telefono, Telefono_Movil FROM telefonos");
             
             java.sql.ResultSetMetaData metadata = rs.getMetaData();
@@ -197,6 +197,12 @@ public class Actualizar extends javax.swing.JFrame {
         jLabel3.setText("Razón Social/Nombre");
 
         jLabel5.setText("Domicilio");
+
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Colonia");
 
@@ -472,6 +478,10 @@ public class Actualizar extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         limpiar();
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4ActionPerformed
     
     /**
      * @param args the command line arguments

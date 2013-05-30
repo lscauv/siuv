@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import javax.swing.JOptionPane;
 import javax.swing.table.*;
 import java.sql.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -15,7 +17,23 @@ public class Clientes extends javax.swing.JFrame {
     Connection conect = null;
     private java.sql.Statement stmt;
     private java.sql.PreparedStatement pstm;
-  
+    public String jLabelA;
+    public String jLabelB;
+   
+    public String jLabelC;
+    public String jLabelD;
+    public String jLabelE;
+    public String jLabelF;
+    public String jLabelG;
+    public String jLabelH;
+    public String jLabelI;
+    public String jLabelJ;
+    public String jLabelK;
+    public String jLabelL;
+    public String jLabelM;
+    
+    
+    
     
     public Clientes() 
     {
@@ -28,15 +46,15 @@ public class Clientes extends javax.swing.JFrame {
         try
         {
            Class.forName("com.mysql.jdbc.Driver");
-           conect = DriverManager.getConnection("jdbc:mysql://localhost/siuv","root","uv");
+           conect = DriverManager.getConnection("jdbc:mysql://localhost/siuv","root","");
             
             stmt = conect.createStatement();
             
-            ResultSet rs = stmt.executeQuery("SELECT ID_RFC, Razon_social, Domicilio, Colonia, Municipio, Estado, Email FROM CLIENTES");
-            //ResultSet rst = stmt.executeQuery("SELECT Num_telefono, Telefono_Movil FROM telefonos");
+           
             
+           ResultSet rs = stmt.executeQuery("SELECT ID_RFC, Actividad_empresarial, Razon_social, Domicilio,  Colonia, Municipio, Codigo_postal,Estado, Email, Num_telefono, Telefono_Movil, Fax, Num_extencion FROM CLIENTES ");
             java.sql.ResultSetMetaData metadata = rs.getMetaData();
-                        
+            
             DefaultTableModel dataModel = new DefaultTableModel();
             TablaClientes.setModel(dataModel);
             
@@ -62,8 +80,8 @@ public class Clientes extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
-         
     }
+    
         
      /**
      * This method is called from within the constructor to initialize the form.
@@ -84,18 +102,12 @@ public class Clientes extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jToolBar2 = new javax.swing.JToolBar();
         BtnAgregar = new javax.swing.JButton();
         BtnBuscar = new javax.swing.JButton();
         BtnEditar = new javax.swing.JButton();
         BtnEliminar = new javax.swing.JButton();
-        BtnInformación = new javax.swing.JButton();
-        BtnClientes = new javax.swing.JButton();
         BtnSalir = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1000, 540));
 
         jPanel1.setBackground(new java.awt.Color(51, 204, 255));
 
@@ -146,22 +158,22 @@ public class Clientes extends javax.swing.JFrame {
                 "RFC", "Actividad empresarial", "Razón social/Nombre", "Domicilio", "Colonia", "Municipio", "Código Postal", "Estado", "E-mail", "Número telefónico", "Extensión", "Fáx", "Teléfono móvil"
             }
         ));
-        TablaClientes.setEnabled(false);
+        TablaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaClientesMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(TablaClientes);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Datos principales de los clientes:");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("Si desea más detalles sobre un cliente diríjase a ");
+        jLabel3.setText("Si desea más detalles sobre un cliente dar clic sobre el nombre de este ");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 0, 0));
         jLabel4.setText("Importante:");
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 255));
-        jLabel5.setText("Información");
 
         jToolBar2.setRollover(true);
 
@@ -213,30 +225,6 @@ public class Clientes extends javax.swing.JFrame {
         });
         jToolBar2.add(BtnEliminar);
 
-        BtnInformación.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Clientes/informacion.png"))); // NOI18N
-        BtnInformación.setText("Información");
-        BtnInformación.setFocusable(false);
-        BtnInformación.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        BtnInformación.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        BtnInformación.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnInformaciónActionPerformed(evt);
-            }
-        });
-        jToolBar2.add(BtnInformación);
-
-        BtnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Clientes/clientes.png"))); // NOI18N
-        BtnClientes.setText("Clientes actuales");
-        BtnClientes.setFocusable(false);
-        BtnClientes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        BtnClientes.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        BtnClientes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnClientesActionPerformed(evt);
-            }
-        });
-        jToolBar2.add(BtnClientes);
-
         BtnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Clientes/salir.png"))); // NOI18N
         BtnSalir.setText("Salir");
         BtnSalir.setFocusable(false);
@@ -256,20 +244,21 @@ public class Clientes extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(621, 621, 621)
-                .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(621, 621, 621)
+                        .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3)
+                        .addGap(75, 75, 75)))
                 .addContainerGap())
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jToolBar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addGap(2, 2, 2)
-                .addComponent(jLabel5))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -282,13 +271,12 @@ public class Clientes extends javax.swing.JFrame {
                     .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(13, 13, 13)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 140, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -296,21 +284,16 @@ public class Clientes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditarActionPerformed
-        // TODO add your handling code here:
-       Actualizar obj = new Actualizar();
+        Actualizar obj = new Actualizar();
        obj.setVisible(true);
-       dispose();
+          // TODO add your handling code here:
     }//GEN-LAST:event_BtnEditarActionPerformed
-
-    private void BtnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnClientesActionPerformed
-        // TODO add your handling code here:
-       
-    }//GEN-LAST:event_BtnClientesActionPerformed
 
     private void BtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarActionPerformed
        TipoCliente obj = new TipoCliente();
        obj.setVisible(true);
-       dispose();
+      
+       
     }//GEN-LAST:event_BtnAgregarActionPerformed
 
     private void BtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirActionPerformed
@@ -322,19 +305,38 @@ public class Clientes extends javax.swing.JFrame {
         // TODO add your handling code here:
        Eliminar obj = new Eliminar();
        obj.setVisible(true);
-       dispose();
+     
     }//GEN-LAST:event_BtnEliminarActionPerformed
 
     private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
         // TODO add your handling code here:
        Buscar obj = new Buscar();
        obj.setVisible(true);
-       dispose();
+     
     }//GEN-LAST:event_BtnBuscarActionPerformed
 
-    private void BtnInformaciónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnInformaciónActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnInformaciónActionPerformed
+    private void TablaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaClientesMouseClicked
+        jLabelA = (String) TablaClientes.getValueAt(TablaClientes.getSelectedRow(),0);
+        jLabelB =(String) TablaClientes.getValueAt(TablaClientes.getSelectedRow(),1); 
+        jLabelC = (String) TablaClientes.getValueAt(TablaClientes.getSelectedRow(),2);
+        jLabelD = (String) TablaClientes.getValueAt(TablaClientes.getSelectedRow(),3);
+        jLabelE = (String) TablaClientes.getValueAt(TablaClientes.getSelectedRow(),4);
+        jLabelF = (String) TablaClientes.getValueAt(TablaClientes.getSelectedRow(),5);
+        jLabelG = (String) TablaClientes.getValueAt(TablaClientes.getSelectedRow(),6);
+        jLabelH = (String) TablaClientes.getValueAt(TablaClientes.getSelectedRow(),7);
+        jLabelI = (String) TablaClientes.getValueAt(TablaClientes.getSelectedRow(),8);
+         jLabelJ= (String) TablaClientes.getValueAt(TablaClientes.getSelectedRow(),9);
+          jLabelK = (String) TablaClientes.getValueAt(TablaClientes.getSelectedRow(),10);
+           jLabelL = (String) TablaClientes.getValueAt(TablaClientes.getSelectedRow(),11);
+            jLabelM = (String) TablaClientes.getValueAt(TablaClientes.getSelectedRow(),12);
+            
+        informacion obj = new informacion();
+         
+         obj.setVisible(true);// TODO add your handling code here:
+         
+         obj.enviarValores(jLabelA, jLabelB, jLabelC,  jLabelD ,  jLabelE ,  jLabelF ,  jLabelG ,  jLabelH ,  jLabelI,  jLabelJ,  jLabelK,  jLabelL,  jLabelM);
+     
+    }//GEN-LAST:event_TablaClientesMouseClicked
 
     /**
      * @param args the command line arguments
@@ -370,20 +372,21 @@ public class Clientes extends javax.swing.JFrame {
             }
         });
     }
+    public void mostrar()
+    {
+        setVisible(true);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAgregar;
     private javax.swing.JButton BtnBuscar;
-    private javax.swing.JButton BtnClientes;
     private javax.swing.JButton BtnEditar;
     private javax.swing.JButton BtnEliminar;
-    private javax.swing.JButton BtnInformación;
     private javax.swing.JButton BtnSalir;
     private javax.swing.JTable TablaClientes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;

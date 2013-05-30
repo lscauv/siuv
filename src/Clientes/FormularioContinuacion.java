@@ -25,9 +25,9 @@ public class FormularioContinuacion extends javax.swing.JFrame {
      */
     public FormularioContinuacion() {
         initComponents();
+        limpiar();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        limpiar();
     }
 
     /**
@@ -39,7 +39,7 @@ public class FormularioContinuacion extends javax.swing.JFrame {
     
     void limpiar () {
    
-    t_idtel.setText("");
+    
     t_num.setText("");
     t_mov.setText("");
     t_fax.setText("");
@@ -55,8 +55,6 @@ public class FormularioContinuacion extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        t_idtel = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         t_num = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
@@ -100,9 +98,13 @@ public class FormularioContinuacion extends javax.swing.JFrame {
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
-        jLabel3.setText("Codigo_Telefono");
-
         jLabel11.setText("Número Telefónico");
+
+        t_num.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t_numActionPerformed(evt);
+            }
+        });
 
         jLabel12.setText("Extensión ");
 
@@ -158,22 +160,16 @@ public class FormularioContinuacion extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(t_idtel, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel11)
-                                    .addComponent(jLabel12)
-                                    .addComponent(jLabel13)
-                                    .addComponent(jLabel14))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(t_ext, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(t_num, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
-                                    .addComponent(t_fax)
-                                    .addComponent(t_mov)))))
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel14))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(t_ext, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(t_num, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+                            .addComponent(t_fax)
+                            .addComponent(t_mov)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jButton2)
@@ -189,11 +185,7 @@ public class FormularioContinuacion extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(t_idtel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(69, 69, 69)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(t_num, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -215,7 +207,7 @@ public class FormularioContinuacion extends javax.swing.JFrame {
                     .addComponent(jButton3)
                     .addComponent(jButton4)
                     .addComponent(jButton5))
-                .addGap(0, 71, Short.MAX_VALUE))
+                .addGap(0, 74, Short.MAX_VALUE))
         );
 
         pack();
@@ -245,17 +237,17 @@ public class FormularioContinuacion extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         
-            conexion cc = new conexion();
+           conexion cc = new conexion();
             Connection cn = cc.conexion();
-            String diez,once,doce, trece,catorce;
+            String uno,dos,tres,cuatro;
             //int siete;
             String sql = "";
            
-            diez = t_idtel.getText();
-            once = t_num.getText();
-            doce = t_mov.getText();
-            trece = t_fax.getText();
-            catorce = t_ext.getText();
+            
+           uno = t_num.getText();
+            dos = t_mov.getText();
+            tres = t_fax.getText();
+            cuatro = t_ext.getText();
            
             
           
@@ -264,7 +256,7 @@ public class FormularioContinuacion extends javax.swing.JFrame {
             Statement st = cn.createStatement();
             
             
-            int n = st.executeUpdate("INSERT INTO telefonos(ID_Telefono, Num_telefono, Num_extencion, Fax, Telefono_Movil) VALUES ('"+ diez +"','"+ once +"','"+ doce +"','"+ trece +"','"+ catorce +"')");
+            int n = st.executeUpdate("INSERT INTO clientes(Num_telefono, Telefono_Movil, Fax, Num_extencion) VALUES ('"+ uno +"','"+ dos +"','"+ tres +"','"+ cuatro +"')");
           
             if (n>0){
             JOptionPane.showMessageDialog(null, "Registro guardado con éxito");
@@ -279,6 +271,10 @@ public class FormularioContinuacion extends javax.swing.JFrame {
         }         
                               
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void t_numActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_numActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_numActionPerformed
 
     /**
      * @param args the command line arguments
@@ -326,11 +322,9 @@ public class FormularioContinuacion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField t_ext;
     private javax.swing.JTextField t_fax;
-    private javax.swing.JTextField t_idtel;
     private javax.swing.JTextField t_mov;
     private javax.swing.JTextField t_num;
     // End of variables declaration//GEN-END:variables

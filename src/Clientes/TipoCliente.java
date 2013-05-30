@@ -33,7 +33,6 @@ public class TipoCliente extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(500, 300));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Clientes/clientefisico.png"))); // NOI18N
@@ -104,14 +103,14 @@ public class TipoCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
        Formulario obj = new Formulario();
        obj.setVisible(true);
-       dispose();
+     
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
        FormularioDos obj = new FormularioDos();
        obj.setVisible(true);
-       dispose();
+       
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

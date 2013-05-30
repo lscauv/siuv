@@ -43,7 +43,7 @@ private void loadClient()
         try
         {
            Class.forName("com.mysql.jdbc.Driver");
-           conect = DriverManager.getConnection("jdbc:mysql://localhost/siuv","root","uv");
+           conect = DriverManager.getConnection("jdbc:mysql://localhost/siuv","root","");
             
             stmt = conect.createStatement();
             
