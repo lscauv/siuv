@@ -17,6 +17,10 @@ public class PrincipalVentas extends javax.swing.JFrame {
      */
     public PrincipalVentas() {
         initComponents();
+        setLocationRelativeTo(null);
+        setResizable(true);
+        setDefaultCloseOperation(0); 
+        setTitle("Bienvenido al Módulo de Ventas");
     }
 
     /**
@@ -32,6 +36,7 @@ public class PrincipalVentas extends javax.swing.JFrame {
         btn_nuevaVenta = new javax.swing.JButton();
         lblCarrito = new javax.swing.JLabel();
         btn_consulta = new javax.swing.JButton();
+        btn_Acercade = new javax.swing.JButton();
         btn_Salir = new javax.swing.JButton();
         lblVentas = new javax.swing.JLabel();
 
@@ -47,13 +52,21 @@ public class PrincipalVentas extends javax.swing.JFrame {
             }
         });
 
-        lblCarrito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ventas/Imagen3.png"))); // NOI18N
+        lblCarrito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ventas/imagenes/Imagen3.png"))); // NOI18N
 
         btn_consulta.setFont(new java.awt.Font("Euphemia", 1, 18)); // NOI18N
         btn_consulta.setText("Consulta");
         btn_consulta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_consultaActionPerformed(evt);
+            }
+        });
+
+        btn_Acercade.setFont(new java.awt.Font("Euphemia", 1, 18)); // NOI18N
+        btn_Acercade.setText("Acerca de");
+        btn_Acercade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_AcercadeActionPerformed(evt);
             }
         });
 
@@ -65,24 +78,25 @@ public class PrincipalVentas extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addComponent(lblCarrito, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_nuevaVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btn_consulta, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
+                    .addComponent(btn_nuevaVenta, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
+                    .addComponent(btn_Acercade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(24, 24, 24))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(53, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(btn_nuevaVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(btn_nuevaVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(43, 43, 43)
-                        .addComponent(btn_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(85, 85, 85))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(lblCarrito)
-                        .addGap(34, 34, 34))))
+                        .addComponent(btn_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45)
+                        .addComponent(btn_Acercade, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblCarrito))
+                .addContainerGap())
         );
 
         btn_Salir.setFont(new java.awt.Font("Euphemia", 1, 18)); // NOI18N
@@ -95,7 +109,7 @@ public class PrincipalVentas extends javax.swing.JFrame {
 
         lblVentas.setFont(new java.awt.Font("Lucida Calligraphy", 1, 60)); // NOI18N
         lblVentas.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        lblVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ventas/venta1.png"))); // NOI18N
+        lblVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ventas/imagenes/venta1.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -104,13 +118,15 @@ public class PrincipalVentas extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 889, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 889, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(123, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(8, 8, 8)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(btn_Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(33, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,15 +135,15 @@ public class PrincipalVentas extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(35, 35, 35)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(184, 184, 184)
-                        .addComponent(btn_Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(39, Short.MAX_VALUE))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(34, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(152, 152, 152))))
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_nuevaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevaVentaActionPerformed
@@ -146,6 +162,13 @@ public class PrincipalVentas extends javax.swing.JFrame {
         ConsultaVentas consultaventas = new ConsultaVentas();
         consultaventas.setVisible(true);
     }//GEN-LAST:event_btn_consultaActionPerformed
+
+    private void btn_AcercadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AcercadeActionPerformed
+        // TODO add your handling code here:
+        
+        AcercaDeVentas acercadeventas = new AcercaDeVentas();
+        acercadeventas.setVisible(true);
+    }//GEN-LAST:event_btn_AcercadeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,6 +205,7 @@ public class PrincipalVentas extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_Acercade;
     private javax.swing.JButton btn_Salir;
     private javax.swing.JButton btn_consulta;
     private javax.swing.JButton btn_nuevaVenta;

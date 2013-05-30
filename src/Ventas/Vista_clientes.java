@@ -4,19 +4,49 @@
  */
 package Ventas;
 
+import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
+
 /**
  *
  * @author vic1
  */
 public class Vista_clientes extends javax.swing.JFrame {
+    
+    Connection conexion;
+    ResultSet rs;
+    PreparedStatement psExecute;
+    Statement stmt;
+    MysqlDataSource data = new MysqlDataSource();
+    String nombre;
+    private String rsz;
 
     /**
      * Creates new form Vista_clientes
      */
     public Vista_clientes() {
         initComponents();
+        setLocationRelativeTo(null);
+        setResizable(false);
+        setDefaultCloseOperation(0); 
+        setTitle("Reporte de Ventas por Cliente");
+       
+        data.setUser("root");
+        data.setPassword("");
+        data.setDatabaseName("siuv");
+        data.setServerName("127.0.0.1");
+                        
+        
     }
 
+    
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,41 +58,41 @@ public class Vista_clientes extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tFacturaCliente = new javax.swing.JTable();
         panel1 = new java.awt.Panel();
         jLabel2 = new javax.swing.JLabel();
-        btnLimpiar = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         comboCliente = new javax.swing.JComboBox();
         txtBusquedaOpcion = new javax.swing.JTextField();
         txtNombreCliente = new javax.swing.JTextField();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        txtNombreCliente1 = new javax.swing.JTextField();
+        lblRzsoc = new javax.swing.JLabel();
+        lblRfc = new javax.swing.JLabel();
+        txtRFCCliente = new javax.swing.JTextField();
         btnSalir3 = new javax.swing.JButton();
+        btnBuscarCliente = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Adorable", 0, 60)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Cooper Black", 0, 50)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Ventas por Clientes");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tFacturaCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Fecha", "Factura", "Costo de Factura"
+
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tFacturaCliente);
 
         panel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ventas/cliente1.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ventas/imagenes/cliente1.png"))); // NOI18N
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
@@ -71,7 +101,7 @@ public class Vista_clientes extends javax.swing.JFrame {
             .addGroup(panel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -80,14 +110,6 @@ public class Vista_clientes extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        btnLimpiar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnLimpiar.setText("Nueva Búsqueda");
-        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLimpiarActionPerformed(evt);
-            }
-        });
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel17.setText("Seleccione tipo de Búsqueda: ");
@@ -99,19 +121,36 @@ public class Vista_clientes extends javax.swing.JFrame {
             }
         });
 
-        txtBusquedaOpcion.setText("Buscar:");
+        txtNombreCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreClienteActionPerformed(evt);
+            }
+        });
 
-        jLabel18.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel18.setText("      Nombre o Razón Social");
+        lblRzsoc.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblRzsoc.setText("      Nombre o Razón Social");
 
-        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel19.setText("                       RFC");
+        lblRfc.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblRfc.setText("                       RFC");
+
+        txtRFCCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRFCClienteActionPerformed(evt);
+            }
+        });
 
         btnSalir3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnSalir3.setText("Salir");
         btnSalir3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalir3ActionPerformed(evt);
+            }
+        });
+
+        btnBuscarCliente.setText("Buscar");
+        btnBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarClienteActionPerformed(evt);
             }
         });
 
@@ -127,36 +166,36 @@ public class Vista_clientes extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(panel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtNombreCliente1, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+                                    .addComponent(txtRFCCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
                                     .addComponent(txtNombreCliente)
-                                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(lblRfc, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(lblRzsoc, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jLabel17)
-                                    .addGap(27, 27, 27)
-                                    .addComponent(comboCliente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addComponent(txtBusquedaOpcion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(46, 46, 46)
-                                .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(comboCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(329, 329, 329)
+                                .addComponent(btnSalir3, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtBusquedaOpcion, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnBuscarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(8, 8, 8))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(557, Short.MAX_VALUE)
-                    .addComponent(btnSalir3, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(20, 20, 20)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -165,38 +204,29 @@ public class Vista_clientes extends javax.swing.JFrame {
                             .addComponent(jLabel17)
                             .addComponent(comboCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtBusquedaOpcion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(54, 54, 54)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtBusquedaOpcion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(45, 45, 45)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSalir3, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblRzsoc, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblRfc, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNombreCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtRFCCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(39, 39, 39))))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(403, Short.MAX_VALUE)
-                    .addComponent(btnSalir3, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap()))
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        // TODO add your handling code here:
-       
-    }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void comboClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboClienteActionPerformed
         // TODO add your handling code here:
@@ -206,6 +236,82 @@ public class Vista_clientes extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btnSalir3ActionPerformed
+
+    private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
+        // TODO add your handling code here:
+        int ValorCombo = comboCliente.getSelectedIndex();
+        if (ValorCombo == 0) {
+            String Campo = txtBusquedaOpcion.getText();
+            
+
+            String sqlBus = "SELECT ID_RFC, Razon_social FROM clientes WHERE ID_RFC = '" + Campo + "'";
+            try {
+                conexion = data.getConnection();
+                
+                psExecute = conexion.prepareStatement("SELECT v.Fecha, v.ID_NFacturas as Factura,v.Total_venta as Total, v.Tipo_pago as Pago, v.Banco \n" +
+                                                      "FROM ventas v");
+                rs = psExecute.executeQuery();
+                siuv.ListTableModel tmodel = siuv.ListTableModel.createModelFromResultSet(rs);
+                tFacturaCliente.setModel(tmodel);
+                
+                conexion = data.getConnection();
+                psExecute = conexion.prepareStatement(sqlBus);
+                rs = psExecute.executeQuery();
+                while (rs.next()) {
+                    String rfc = rs.getString("ID_RFC");
+                    String rsc = rs.getString("Razon_social");
+                    
+                    txtRFCCliente.setText(rfc);
+                    txtNombreCliente.setText(rsc);
+                    
+
+                }
+
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage());
+                
+
+
+            }
+
+        } else if (ValorCombo == 1) {
+            String Campo = txtBusquedaOpcion.getText();
+
+            String sqlBus = "SELECT ID_RFC, Razon_social FROM clientes WHERE Razon_social = '" + Campo + "'";
+            try {
+                conexion = data.getConnection();
+                psExecute = conexion.prepareStatement("SELECT v.Fecha, v.ID_NFacturas as Factura,v.Total_venta as Total, v.Tipo_pago as Pago, v.Banco \n" +
+                                                            "FROM ventas v,clientes");
+                rs = psExecute.executeQuery();
+                siuv.ListTableModel tmodel = siuv.ListTableModel.createModelFromResultSet(rs);
+                tFacturaCliente.setModel(tmodel);
+                
+                conexion = data.getConnection();
+                psExecute = conexion.prepareStatement(sqlBus);
+                rs = psExecute.executeQuery();
+                
+                while (rs.next()) {
+                    String rfc = rs.getString("ID_RFC");
+                    String rsc = rs.getString("Razon_social");
+                    
+                    txtRFCCliente.setText(rfc);
+                    txtNombreCliente.setText(rsc);                    
+                }
+
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage());
+
+            }
+        }
+    }//GEN-LAST:event_btnBuscarClienteActionPerformed
+
+    private void txtNombreClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreClienteActionPerformed
+
+    private void txtRFCClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRFCClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRFCClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -242,19 +348,19 @@ public class Vista_clientes extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnBuscarCliente;
     private javax.swing.JButton btnSalir3;
     private javax.swing.JComboBox comboCliente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblRfc;
+    private javax.swing.JLabel lblRzsoc;
     private java.awt.Panel panel1;
+    private javax.swing.JTable tFacturaCliente;
     private javax.swing.JTextField txtBusquedaOpcion;
     private javax.swing.JTextField txtNombreCliente;
-    private javax.swing.JTextField txtNombreCliente1;
+    private javax.swing.JTextField txtRFCCliente;
     // End of variables declaration//GEN-END:variables
 }
