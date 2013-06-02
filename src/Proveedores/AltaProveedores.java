@@ -33,7 +33,7 @@ public class AltaProveedores extends javax.swing.JFrame {
         this.psExecute = null;
         initComponents();
         data.setUser("root");
-        data.setPassword("uv");
+        data.setPassword("1234");
         data.setDatabaseName("siuv");
         data.setServerName("127.0.0.1");
         
@@ -90,7 +90,6 @@ public class AltaProveedores extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txtProducto = new javax.swing.JTextField();
         Limpiar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -292,13 +291,6 @@ public class AltaProveedores extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Actualizar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -392,8 +384,6 @@ public class AltaProveedores extends javax.swing.JFrame {
                 .addComponent(BotonBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(Asalir, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -472,17 +462,12 @@ public class AltaProveedores extends javax.swing.JFrame {
                             .addComponent(jLabel8)
                             .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(26, 26, 26)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(BotonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BotonBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Asalir, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BotonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(jButton1)))
+                .addGap(57, 57, 57)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BotonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BotonBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Asalir, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BotonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(252, Short.MAX_VALUE))
         );
 
@@ -756,63 +741,6 @@ public class AltaProveedores extends javax.swing.JFrame {
                 observacion.setText(""); 
     }//GEN-LAST:event_LimpiarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String Campo = txtBuscar.getText();
-       // String sqlBus = "SELECT ID_Proveedor, Entidad_fed, Localidad, ID_Producto, Nom_proveedor, Contacto_proveedor, Codigo_postal, Telefono, Email, Num_cuenta, Clabe, Observaciones, Direccion, Colonia, Banco FROM proveedores WHERE Nom_proveedor = '"+Campo+"'";
-        String updateStr = "UPDATE proveedores SET ID_Proveedor, Entidad_fed, Localidad, ID_Producto, Nom_proveedor, Contacto_proveedor, Codigo_postal, Telefono, Email, Num_cuenta, Clabe, Observaciones, Direccion, Colonia, Banco  WHERE ID_Proveedor = '"+Campo+"'";
-           
-        int id = 0;   
-        try {
-                 
-           conexion = data.getConnection();
-            stmt = conexion.createStatement();
-            id = stmt.executeUpdate(updateStr);  
-                
-                
-                
-               while (rs.next()) {
-                String ID_Proveedor = rs.getString("ID_Proveedor");
-                String Entidad_fed = rs.getString("Entidad_fed");
-                String Localidad = rs.getString("Localidad");
-                String Producto = rs.getString("ID_Producto");
-                String Nom_proveedor = rs.getString("Nom_proveedor");
-                String Contacto_proveedor = rs.getString("Contacto_proveedor");
-                String Codigo_postal = rs.getString("Codigo_postal");
-                String Telefono = rs.getString("Telefono");
-                String Email = rs.getString("Email");
-                String Num_cuenta = rs.getString("Num_cuenta");
-                String Clabe = rs.getString("Clabe");
-                String Observaciones = rs.getString("Observaciones");
-                String Direccion = rs.getString("Direccion");
-                String Colonia = rs.getString("Colonia");
-                String Banco = rs.getString("Banco");
-                
-                
-                txtID.setText(ID_Proveedor);
-                txtEntidad.setText(Entidad_fed);
-                txtLocalidad.setText(Localidad);
-                txtEmpresa.setText(Nom_proveedor);
-                txtContacto.setText(Contacto_proveedor);
-                txtCodigo.setText(Codigo_postal);
-                txtTelefono.setText(Telefono);
-                txtCorreo.setText(Email);
-                txtCuenta.setText(Num_cuenta);
-                txtClabe.setText(Clabe);
-                txtBanco.setText(Observaciones);
-                txtDireccion.setText(Direccion);
-                txtColonia.setText(Colonia);
-                observacion.setText(Banco);
-                                
-            }
-                
-
-                
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this, ex.getMessage());
-                
-            }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -854,7 +782,6 @@ public class AltaProveedores extends javax.swing.JFrame {
     private javax.swing.JButton BotonGuardar;
     private javax.swing.JComboBox ComboBoxProveedor;
     private javax.swing.JButton Limpiar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

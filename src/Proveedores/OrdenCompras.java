@@ -31,7 +31,7 @@ public class OrdenCompras extends javax.swing.JFrame {
         setLocationRelativeTo(null);
        
         data.setUser("root");
-        data.setPassword("uv");
+        data.setPassword("1234");
         data.setDatabaseName("siuv");
         data.setServerName("127.0.0.1");
         txtFecha.setText(fechaActual());
